@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;cxx;c;def</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{D9D6E242-F8AF-46E4-B9FD-80ECBC20BA3E}</UniqueIdentifier>
+      <Extensions>qrc;*</Extensions>
+      <ParseFiles>false</ParseFiles>
+    </Filter>
+    <Filter Include="Generated Files">
+      <UniqueIdentifier>{71ED8ED8-ACB9-4CE9-BBE1-E00B30144E11}</UniqueIdentifier>
+      <Extensions>moc;h;cpp</Extensions>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
+    <Filter Include="Generated Files\Debug_x64">
+      <UniqueIdentifier>{9c20b8b3-b277-475a-b518-aa35f08f56a2}</UniqueIdentifier>
+      <Extensions>cpp;moc</Extensions>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
+    <Filter Include="Generated Files\Release_x64">
+      <UniqueIdentifier>{e3d6293b-7870-4358-b956-8b80a24988ea}</UniqueIdentifier>
+      <Extensions>cpp;moc</Extensions>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
+    <Filter Include="Source Files\Tests">
+      <UniqueIdentifier>{fae230ba-00ff-4a47-babe-b22e724fb5b4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Application">
+      <UniqueIdentifier>{a0943f9b-7edd-4c55-8b0f-1527c9519f42}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\..\test\src\FlowCoreTest\ArchiveTest.cpp">
+      <Filter>Source Files\Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\test\src\FlowCoreTest\ObjectTest.cpp">
+      <Filter>Source Files\Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\test\src\FlowCoreTest\main.cpp">
+      <Filter>Source Files\Application</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\test\src\FlowCoreTest\VectorTest.cpp">
+      <Filter>Source Files\Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\obj\FlowCoreTest\x64_Debug\moc\moc_ObjectTest.cpp">
+      <Filter>Generated Files\Debug_x64</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\obj\FlowCoreTest\x64_Release\moc\moc_ObjectTest.cpp">
+      <Filter>Generated Files\Release_x64</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\obj\FlowCoreTest\x64_Debug\moc\moc_ArchiveTest.cpp">
+      <Filter>Generated Files\Debug_x64</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\obj\FlowCoreTest\x64_Release\moc\moc_ArchiveTest.cpp">
+      <Filter>Generated Files\Release_x64</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\obj\FlowCoreTest\x64_Debug\moc\moc_VectorTest.cpp">
+      <Filter>Generated Files\Debug_x64</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\obj\FlowCoreTest\x64_Release\moc\moc_VectorTest.cpp">
+      <Filter>Generated Files\Release_x64</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\test\src\FlowCoreTest\UniqueIdTest.cpp">
+      <Filter>Source Files\Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\obj\FlowCoreTest\x64_Debug\moc\moc_UniqueIdTest.cpp">
+      <Filter>Generated Files\Debug_x64</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\obj\FlowCoreTest\x64_Release\moc\moc_UniqueIdTest.cpp">
+      <Filter>Generated Files\Release_x64</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\test\src\FlowCoreTest\ValueArrayTest.cpp">
+      <Filter>Source Files\Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\obj\FlowCoreTest\x64_Debug\moc\moc_ValueArrayTest.cpp">
+      <Filter>Generated Files\Debug_x64</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\obj\FlowCoreTest\x64_Release\moc\moc_ValueArrayTest.cpp">
+      <Filter>Generated Files\Release_x64</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="..\..\..\..\test\src\FlowCoreTest\ObjectTest.h">
+      <Filter>Source Files\Tests</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\..\test\src\FlowCoreTest\ArchiveTest.h">
+      <Filter>Source Files\Tests</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\..\test\src\FlowCoreTest\VectorTest.h">
+      <Filter>Source Files\Tests</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\..\test\src\FlowCoreTest\UniqueIdTest.h">
+      <Filter>Source Files\Tests</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\..\test\src\FlowCoreTest\ValueArrayTest.h">
+      <Filter>Source Files\Tests</Filter>
+    </CustomBuild>
+  </ItemGroup>
+</Project>

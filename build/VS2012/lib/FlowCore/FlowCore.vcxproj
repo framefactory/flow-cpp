@@ -1,0 +1,168 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\..\obj\FlowCore\x64_Debug\moc\moc_UnitTest.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\obj\FlowCore\x64_Release\moc\moc_UnitTest.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\src\FlowCore\Archive.cpp" />
+    <ClCompile Include="..\..\..\..\src\FlowCore\JsonUtils.cpp" />
+    <ClCompile Include="..\..\..\..\src\FlowCore\Log.cpp" />
+    <ClCompile Include="..\..\..\..\src\FlowCore\LogManager.cpp" />
+    <ClCompile Include="..\..\..\..\src\FlowCore\LogMessage.cpp" />
+    <ClCompile Include="..\..\..\..\src\FlowCore\LogType.cpp" />
+    <ClCompile Include="..\..\..\..\src\FlowCore\Math.cpp" />
+    <ClCompile Include="..\..\..\..\src\FlowCore\MemoryTracer.cpp" />
+    <ClCompile Include="..\..\..\..\src\FlowCore\Object.cpp" />
+    <ClCompile Include="..\..\..\..\src\FlowCore\PrecompiledHeader.cpp" />
+    <ClCompile Include="..\..\..\..\src\FlowCore\Setup.cpp" />
+    <ClCompile Include="..\..\..\..\src\FlowCore\StopWatch.cpp" />
+    <ClCompile Include="..\..\..\..\src\FlowCore\TestManager.cpp" />
+    <ClCompile Include="..\..\..\..\src\FlowCore\Time.cpp" />
+    <ClCompile Include="..\..\..\..\src\FlowCore\Timer.cpp" />
+    <ClCompile Include="..\..\..\..\src\FlowCore\TypeInfo.cpp" />
+    <ClCompile Include="..\..\..\..\src\FlowCore\TypeRegistry.cpp" />
+    <ClCompile Include="..\..\..\..\src\FlowCore\UnicodeTraits.cpp" />
+    <ClCompile Include="..\..\..\..\src\FlowCore\UniqueId.cpp" />
+    <ClCompile Include="..\..\..\..\src\FlowCore\UnitTest.cpp" />
+    <ClCompile Include="..\..\..\..\src\FlowCore\ValueArray.cpp" />
+    <ClCompile Include="..\..\..\..\src\FlowCore\ValueType.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\..\src\FlowCore\Archive.h" />
+    <ClInclude Include="..\..\..\..\src\FlowCore\AutoConvert.h" />
+    <ClInclude Include="..\..\..\..\src\FlowCore\Bit.h" />
+    <ClInclude Include="..\..\..\..\src\FlowCore\CriticalSection.h" />
+    <ClInclude Include="..\..\..\..\src\FlowCore\FastMat.h" />
+    <ClInclude Include="..\..\..\..\src\FlowCore\FastVec.h" />
+    <ClInclude Include="..\..\..\..\src\FlowCore\Intrinsics.h" />
+    <ClInclude Include="..\..\..\..\src\FlowCore\JsonUtils.h" />
+    <ClInclude Include="..\..\..\..\src\FlowCore\Library.h" />
+    <ClInclude Include="..\..\..\..\src\FlowCore\Log.h" />
+    <ClInclude Include="..\..\..\..\src\FlowCore\LogManager.h" />
+    <ClInclude Include="..\..\..\..\src\FlowCore\LogMessage.h" />
+    <ClInclude Include="..\..\..\..\src\FlowCore\LogType.h" />
+    <ClInclude Include="..\..\..\..\src\FlowCore\Math.h" />
+    <ClInclude Include="..\..\..\..\src\FlowCore\Matrix3T.h" />
+    <ClInclude Include="..\..\..\..\src\FlowCore\Matrix4T.h" />
+    <ClInclude Include="..\..\..\..\src\FlowCore\MemoryTracer.h" />
+    <ClInclude Include="..\..\..\..\src\FlowCore\Object.h" />
+    <ClInclude Include="..\..\..\..\src\FlowCore\PrecompiledHeader.h" />
+    <ClInclude Include="..\..\..\..\src\FlowCore\QuaternionT.h" />
+    <ClInclude Include="..\..\..\..\src\FlowCore\RangeT.h" />
+    <ClInclude Include="..\..\..\..\src\FlowCore\Rect2T.h" />
+    <ClInclude Include="..\..\..\..\src\FlowCore\Setup.h" />
+    <ClInclude Include="..\..\..\..\src\FlowCore\SingletonT.h" />
+    <ClInclude Include="..\..\..\..\src\FlowCore\StopWatch.h" />
+    <ClInclude Include="..\..\..\..\src\FlowCore\TestManager.h" />
+    <ClInclude Include="..\..\..\..\src\FlowCore\Time.h" />
+    <ClInclude Include="..\..\..\..\src\FlowCore\Timer.h" />
+    <ClInclude Include="..\..\..\..\src\FlowCore\TreeMap2T.h" />
+    <ClInclude Include="..\..\..\..\src\FlowCore\TypeInfo.h" />
+    <ClInclude Include="..\..\..\..\src\FlowCore\TypeRegistry.h" />
+    <CustomBuild Include="..\..\..\..\src\FlowCore\UnitTest.h">
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Moc%27ing UnitTest.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\..\..\..\..\obj\FlowCore\$(PlatformName)_$(ConfigurationName)\moc\moc_%(Filename).cpp</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\..\..\..\..\obj\FlowCore\$(PlatformName)_$(ConfigurationName)\moc\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DWIN64 -DQT_DLL -DQT_CORE_LIB -DFLOWCORE_LIB -D_LIB -D_UNICODE "-I." "-I$(QTDIR)\include" "-I$(QTDIR)\include\QtCore" "-I.\..\..\..\..\obj\FlowCore\$(PlatformName)_$(ConfigurationName)\moc" "-I$(FLOW_DIR)\src" "-I$(BOOST_DIR)\."</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Moc%27ing UnitTest.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\..\..\..\..\obj\FlowCore\$(PlatformName)_$(ConfigurationName)\moc\moc_%(Filename).cpp</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\..\..\..\..\obj\FlowCore\$(PlatformName)_$(ConfigurationName)\moc\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DWIN64 -DQT_DLL -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DFLOWCORE_LIB -D_LIB -D_UNICODE "-I." "-I$(QTDIR)\include" "-I$(QTDIR)\include\QtCore" "-I.\..\..\..\..\obj\FlowCore\$(PlatformName)_$(ConfigurationName)\moc" "-I$(FLOW_DIR)\src" "-I$(BOOST_DIR)\."</Command>
+    </CustomBuild>
+    <ClInclude Include="..\..\..\..\src\FlowCore\UnicodeTraits.h" />
+    <ClInclude Include="..\..\..\..\src\FlowCore\UniqueId.h" />
+    <ClInclude Include="..\..\..\..\src\FlowCore\ValueArray.h" />
+    <ClInclude Include="..\..\..\..\src\FlowCore\ValueType.h" />
+    <ClInclude Include="..\..\..\..\src\FlowCore\Vector2T.h" />
+    <ClInclude Include="..\..\..\..\src\FlowCore\Vector3T.h" />
+    <ClInclude Include="..\..\..\..\src\FlowCore\Vector4T.h" />
+    <ClInclude Include="..\..\..\..\src\FlowCore\VectorT.h" />
+    <ClInclude Include="..\..\..\..\src\FlowCore\Windows.h" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{A266C877-EA04-4BCA-BFFF-A180F6E400F6}</ProjectGuid>
+    <Keyword>Qt4VSv1.0</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\props\Boost_x64.props" />
+    <Import Project="..\..\props\FlowLibrary.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\props\Boost_x64.props" />
+    <Import Project="..\..\props\FlowLibrary.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>11.0.60315.1</_ProjectFileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PreprocessorDefinitions>UNICODE;WIN32;WIN64;QT_DLL;QT_CORE_LIB;FLOWCORE_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>.;$(QTDIR)\include;$(QTDIR)\include\QtCore;.\..\..\..\..\obj\FlowCore\$(PlatformName)_$(ConfigurationName)\moc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <Optimization>Disabled</Optimization>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <OutputFile>$(OutDir)\$(ProjectName).dll</OutputFile>
+      <AdditionalLibraryDirectories>$(QTDIR)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>qtmaind.lib;Qt5Cored.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <PreprocessorDefinitions>UNICODE;WIN32;WIN64;QT_DLL;QT_NO_DEBUG;NDEBUG;QT_CORE_LIB;FLOWCORE_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>.;$(QTDIR)\include;$(QTDIR)\include\QtCore;.\..\..\..\..\obj\FlowCore\$(PlatformName)_$(ConfigurationName)\moc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DebugInformationFormat />
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <OutputFile>$(OutDir)\$(ProjectName).dll</OutputFile>
+      <AdditionalLibraryDirectories>$(QTDIR)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <AdditionalDependencies>qtmain.lib;Qt5Core.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties UicDir=".\..\..\..\..\obj\FlowCore\$(PlatformName)_$(ConfigurationName)\moc" MocDir=".\..\..\..\..\obj\FlowCore\$(PlatformName)_$(ConfigurationName)\moc" MocOptions="" RccDir=".\..\..\..\..\obj\FlowCore\$(PlatformName)_$(ConfigurationName)\moc" lupdateOnBuild="0" lupdateOptions="" lreleaseOptions="" Qt5Version_x0020_Win32="Qt 5.2.0 OpenGL" Qt5Version_x0020_x64="$(DefaultQtVersion)" />
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

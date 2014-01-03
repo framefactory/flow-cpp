@@ -1,0 +1,61 @@
+# Binaries And Temporaries
+# --------------------------------------
+
+*.exe
+*.ilk
+*.pdb
+*.com
+*.obj
+*.so
+*.o
+*.cache
+log.txt
+
+backup/
+bin/
+libs/
+doc/
+obj/
+CMake/
+Code/
+
+# Packages
+# --------------------------------------
+
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# Visual Studio Configuration
+# --------------------------------------
+
+ipch/
+*.vcxproj.user
+*.sdf
+*.suo
+*.ipch
+*.opensdf
+*.user
+*.aps
+*.pch
+*.ncb
+
+# OS Generated Files
+# --------------------------------------
+
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Icon?
+ehthumbs.db
+Thumbs.db
+
+# Various
+# --------------------------------------
