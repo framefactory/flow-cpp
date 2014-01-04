@@ -17,7 +17,7 @@
       <AdditionalLibraryDirectories>$(OutDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PreBuildEvent>
-      <Command>xcopy $(FLOW_DIR)\libs\bin\win64\*.* $(OutDir) /Y</Command>
+      <Command>xcopy $(FLOW_DIR)\libs\bin\*.* $(OutDir) /Y</Command>
     </PreBuildEvent>
     <PreBuildEvent>
       <Message>Copy Library DLLs</Message>
