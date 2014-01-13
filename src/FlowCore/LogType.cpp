@@ -17,7 +17,7 @@ const char* FLogType::name() const
 {
 	switch (m_state)
 	{
-	case Trace:						return "Trace";
+	case Trace:						return "Print";
 	case Debug:						return "Debug";
 	case Info:						return "Info";
 	case Warning:					return "Warning";
