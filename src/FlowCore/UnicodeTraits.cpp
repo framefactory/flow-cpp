@@ -10,47 +10,21 @@
 #include "FlowCore/UnicodeTraits.h"
 #include "FlowCore/MemoryTracer.h"
 
-// -----------------------------------------------------------------------------
-//  Class FUnicodeTraits
-// -----------------------------------------------------------------------------
+// Static members --------------------------------------------------------------
 
-// Public commands -------------------------------------------------------------
+typedef std::unordered_map<std::string, uint32_t> nameIndexMap_t;
+static nameIndexMap_t s_nameIndexMap;
 
-FUnicodeTraits::range_type FUnicodeTraits::codeBlockRange(const char* blockName)
+struct blockEntry_t
 {
-	if (s_nameIndexMap.empty())	{
-		for (uint32_t i = 0; i < s_blockCount; ++i) {
-			s_nameIndexMap.insert(
-				nameIndexMap_t::value_type(s_blockTable[i].name, i));
-		}
-	}
+	uint32_t begin;
+	uint32_t end;
+	const char* name;
+};
 
-	std::string bnString(blockName);
-	auto it = s_nameIndexMap.find(bnString);
-	if (it == s_nameIndexMap.end())
-		return range_type(0, 0);
+static const uint32_t s_blockCount = 220;
 
-	uint32_t blockIndex = it->second;
-	return range_type(
-		s_blockTable[blockIndex].begin, s_blockTable[blockIndex].end);
-}
-
-FUnicodeTraits::range_type FUnicodeTraits::codeBlockRange(uint32_t blockIndex)
-{
-	F_ASSERT(blockIndex < s_blockCount);
-	return range_type(
-		s_blockTable[blockIndex].begin, s_blockTable[blockIndex].end);
-}
-
-const char* FUnicodeTraits::codeBlockName(uint32_t blockIndex)
-{
-	F_ASSERT(blockIndex < s_blockCount);
-	return s_blockTable[blockIndex].name;
-}
-
-// Internal data members -------------------------------------------------------
-
-const FUnicodeTraits::blockEntry_t FUnicodeTraits::s_blockTable[] =
+static const blockEntry_t s_blockTable[] =
 {
 	{ 0x0000, 0x007F, "Basic Latin" }, 
 	{ 0x0080, 0x00FF, "Latin-1 Supplement" }, 
@@ -273,6 +247,50 @@ const FUnicodeTraits::blockEntry_t FUnicodeTraits::s_blockTable[] =
 	{ 0xF0000, 0xFFFFF, "Supplementary Private Use Area-A" }, 
 	{ 0x100000, 0x10FFFF, "Supplementary Private Use Area-B" }
 };
+
+// -----------------------------------------------------------------------------
+//  Class FUnicodeTraits
+// -----------------------------------------------------------------------------
+
+// Public commands -------------------------------------------------------------
+
+FUnicodeTraits::range_type FUnicodeTraits::codeBlockRange(const char* blockName)
+{
+	if (s_nameIndexMap.empty())	{
+		for (uint32_t i = 0; i < s_blockCount; ++i) {
+			s_nameIndexMap.insert(
+				nameIndexMap_t::value_type(s_blockTable[i].name, i));
+		}
+	}
+
+	std::string bnString(blockName);
+	auto it = s_nameIndexMap.find(bnString);
+	if (it == s_nameIndexMap.end())
+		return range_type(0, 0);
+
+	uint32_t blockIndex = it->second;
+	return range_type(
+		s_blockTable[blockIndex].begin, s_blockTable[blockIndex].end);
+}
+
+FUnicodeTraits::range_type FUnicodeTraits::codeBlockRange(uint32_t blockIndex)
+{
+	F_ASSERT(blockIndex < s_blockCount);
+	return range_type(
+		s_blockTable[blockIndex].begin, s_blockTable[blockIndex].end);
+}
+
+const char* FUnicodeTraits::codeBlockName(uint32_t blockIndex)
+{
+	F_ASSERT(blockIndex < s_blockCount);
+	return s_blockTable[blockIndex].name;
+}
+
+uint32_t FUnicodeTraits::codeBlockCount()
+{
+	return s_blockCount;
+}
+
 
 
 // -----------------------------------------------------------------------------

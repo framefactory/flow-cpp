@@ -31,7 +31,7 @@ FMemoryTracer::FMemoryTracer()
   m_enabled(true),
   m_hashInUse(false)
 {
-	F_TRACE << "\n***** MEMORY TRACER ACTIVE *****\n\n";
+	F_TRACE << "\n***** MEMORY TRACER ACTIVE *****\n";
 }
 
 FMemoryTracer::~FMemoryTracer()
@@ -116,14 +116,13 @@ QString FMemoryTracer::_dump()
 		if (m_totalAllocs != m_totalFrees)
 			stream << "Number of allocations (" << m_totalAllocs
 			<< ") differs from number of frees (" << m_totalFrees << ")!\n";
-		stream << "\n";
 		return message;
 	}
 
 	stream << "\n***** MEMORY LEAKS DETECTED *****\n\n";
 	stream << "Total " << m_totalAllocs << " allocations with ";
 	stream << m_totalSize << " bytes.\n";
-	stream << "Number of unfreed allocations: " << m_totalAllocs - m_totalFrees << "\n\n";
+	stream << "Number of unfreed allocations: " << m_totalAllocs - m_totalFrees << "\n";
 
 	allocMap_t::iterator it;
 	for (it = m_allocs.begin(); it != m_allocs.end(); it++)

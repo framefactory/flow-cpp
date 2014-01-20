@@ -14,8 +14,10 @@
 #include "FlowCore/MemoryTracer.h"
 
 #include <QString>
-#include <QFile>
 #include <QTextStream>
+#include <QFileInfo>
+#include <QDir>
+#include <QFile>
 
 #include <algorithm>
 #include <fstream>
@@ -34,6 +36,8 @@ FBitmapFontFactory::FBitmapFontFactory()
   m_bitmapSize(1024),
   m_glyphPadding(1)
 {
+	m_unicodeBlocks.push_back("Basic Latin");
+	m_unicodeBlocks.push_back("Latin-1 Supplement");
 }
 
 FBitmapFontFactory::~FBitmapFontFactory()
@@ -129,28 +133,44 @@ void FBitmapFontFactory::_loadGlyphs()
 {
 	m_factory.setGlyphBitmapMaxHeight(m_fontHeight);
 
-	for (uint32_t charCode = 0; charCode < 256; ++charCode)
-	{
-		if (!m_factory.loadGlyph(charCode))
-			continue;
+	for (size_t i = 0; i < m_unicodeBlocks.size(); ++i) {
+		FUnicodeTraits::range_type blockRange
+			= FUnicodeTraits::codeBlockRange(m_unicodeBlocks[i]);
+		
+		if (!blockRange.isEmpty()) {
+			uint32_t rangeStart = blockRange.lowerBound();
+			uint32_t rangeEnd = blockRange.upperBound();
+			uint32_t numGlyphs = 0;
 
-		if (!m_factory.renderGlyphBitmap())
-			continue;
+			for (uint32_t charCode = rangeStart; charCode <= rangeEnd; ++charCode) {
+				if (!m_factory.loadGlyph(charCode)) {
+					continue;
+				}
 
-		glyph_t glyphEntry;
-		if (!m_factory.getGlyphInfo(&glyphEntry.bitmap))
-			continue;
+				if (!m_factory.renderGlyphBitmap()) {
+					continue;
+				}
 
-		if (glyphEntry.bitmap.pData)
-		{
-			uint32_t numBytes = glyphEntry.bitmap.pitch * glyphEntry.bitmap.size.y;
-			uint8_t* pGlyphBitmap = new uint8_t[numBytes];
-			memcpy(pGlyphBitmap, glyphEntry.bitmap.pData, numBytes);
-			glyphEntry.bitmap.pData = pGlyphBitmap;
+				glyph_t glyphEntry;
+				if (!m_factory.getGlyphInfo(&glyphEntry.bitmap)) {
+					continue;
+				}
+
+				if (glyphEntry.bitmap.pData) {
+					uint32_t numBytes = glyphEntry.bitmap.pitch * glyphEntry.bitmap.size.y;
+					uint8_t* pGlyphBitmap = new uint8_t[numBytes];
+					memcpy(pGlyphBitmap, glyphEntry.bitmap.pData, numBytes);
+					glyphEntry.bitmap.pData = pGlyphBitmap;
+					m_glyphTable.push_back(glyphEntry);
+					numGlyphs++;
+				}
+			}
+
+			F_PRINT << m_unicodeBlocks[i] << ": " << numGlyphs << " glyphs loaded";
 		}
-
-		m_glyphTable.push_back(glyphEntry);
 	}
+
+	F_PRINT;
 }
 
 size_t FBitmapFontFactory::_fillMap(const FVector2i& mapSize, size_t firstGlyph) const
@@ -165,7 +185,7 @@ size_t FBitmapFontFactory::_fillMap(const FVector2i& mapSize, size_t firstGlyph)
 		if (!m_glyphTable[i].bitmap.pData)
 			continue;
 
-		FVector2i glyphSize = m_glyphTable[i].bitmap.size + glyphPadding;
+		FVector2i glyphSize = m_glyphTable[i].bitmap.size + glyphPadding * 2;
 		if (!treeMap.insert(glyphSize))
 			return i;
 	}
@@ -185,7 +205,7 @@ void FBitmapFontFactory::_calculateBitmapSize()
 	uint32_t requiredCapacity = 0;
 	for (uint32_t i = 0; i < m_glyphTable.size(); ++i)
 	{
-		FVector2i glyphSize = m_glyphTable[i].bitmap.size + glyphPadding;
+		FVector2i glyphSize = m_glyphTable[i].bitmap.size + glyphPadding * 2;
 		requiredCapacity += (uint32_t)(glyphSize.x * glyphSize.y);
 	}
 
@@ -227,7 +247,7 @@ void FBitmapFontFactory::_calculateBitmapSize()
 			requiredCapacity = 0;
 			for (size_t i = overflowGlyph; i < m_glyphTable.size(); ++i)
 			{
-				FVector2i glyphSize = m_glyphTable[i].bitmap.size + glyphPadding;
+				FVector2i glyphSize = m_glyphTable[i].bitmap.size + glyphPadding * 2;
 				requiredCapacity += (uint32_t)(glyphSize.x * glyphSize.y);
 			}
 
@@ -276,7 +296,7 @@ void FBitmapFontFactory::_createFontBitmaps()
 			continue;
 		}
 
-		FVector2i paddedGlyphSize = currentGlyph.bitmap.size + glyphPadding;
+		FVector2i paddedGlyphSize = currentGlyph.bitmap.size + glyphPadding * 2;
 		int glyphWidth = currentGlyph.bitmap.size.x;
 		int glyphHeight = currentGlyph.bitmap.size.y;
 	
@@ -307,8 +327,8 @@ void FBitmapFontFactory::_createFontBitmaps()
 
 		uint8_t* pTexData = currentBitmap.data()
 			+ bitmapBytes - bitmapPitch
-			- currentGlyph.texturePosition.y * bitmapPitch
-			+ currentGlyph.texturePosition.x;
+			- (currentGlyph.texturePosition.y + m_glyphPadding) * bitmapPitch
+			+ (currentGlyph.texturePosition.x + m_glyphPadding);
 
 		int32_t glyphPitch = currentGlyph.bitmap.pitch;
 		F_ASSERT(pTexData - (glyphHeight - 1) * bitmapPitch >= currentBitmap.data());
@@ -318,7 +338,7 @@ void FBitmapFontFactory::_createFontBitmaps()
 			const uint8_t* pSrc = currentGlyph.bitmap.pData + y * glyphPitch;
 			uint8_t* pDst = pTexData - y * bitmapPitch;
 			for (int32_t x = 0; x < glyphWidth; ++x)
-				pDst[x] = pSrc[x];
+				pDst[x] = pSrc[x] / 2 + 128;
 		}
 
 		delete[] currentGlyph.bitmap.pData;
@@ -333,6 +353,9 @@ void FBitmapFontFactory::_createFontBitmaps()
 void FBitmapFontFactory::_writeFontDesc()
 {
 	QString path = QString("%1\\%2%3_desc.txt").arg(m_targetFolder).arg(m_fontName).arg(m_fontHeight);
+
+	QDir dir;
+	dir.mkpath(m_targetFolder);
 
 	QFile outFile(path);
 	if (!outFile.open(QFile::WriteOnly)) {
@@ -381,8 +404,8 @@ void FBitmapFontFactory::_writeFontDesc()
 void FBitmapFontFactory::_writeFontBitmaps()
 {
 	for (size_t i = 0; i < m_bitmaps.size(); ++i) {
-		QString path = QString("%1\\%2%3_map%4.png").arg(m_targetFolder).arg(m_fontName).arg(m_fontHeight).arg(i);
-		m_bitmaps[i].save(path, FImageFileFormat::PNG);
+		QString filePath = QString("%1\\%2%3_map%4.png").arg(m_targetFolder).arg(m_fontName).arg(m_fontHeight).arg(i);
+		m_bitmaps[i].save(filePath, FImageFileFormat::PNG);
 	}
 }
 

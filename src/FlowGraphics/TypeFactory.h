@@ -21,6 +21,9 @@ struct _typeFactoryImpl_t;
 //  Class FTypeFactory
 // -----------------------------------------------------------------------------
 
+/// The FTypeFactory class wraps the FreeType font library and provides convenient
+/// methods to load a font, access its properties, load glyphs both rendered as
+/// bitmaps and as path representations.
 class FLOWGRAPHICS_EXPORT FTypeFactory
 {
 	//  Public types -------------------------------------------------

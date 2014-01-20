@@ -16,8 +16,8 @@
 //  Class FRangeT
 // -----------------------------------------------------------------------------
 
-/// Represents a range of values between a lower bound and an upper
-/// bound. Both boundaries are included.
+/// Represents an interval between a lower and an upper
+/// boundary value. Both boundaries are included.
 template <typename T>
 class FRangeT
 {
