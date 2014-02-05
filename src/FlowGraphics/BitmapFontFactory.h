@@ -20,6 +20,7 @@
 #include <QString>
 #include <vector>
 
+class QTextStream;
 
 // -----------------------------------------------------------------------------
 //  Class FBitmapFontFactory
@@ -57,27 +58,37 @@ public:
 	//  Internal functions -------------------------------------------
 
 private:
+	struct glyph_t;
+
 	void _loadGlyphs();
 	size_t _fillMap(const FVector2i& mapSize, size_t firstGlyph) const;
 	void _calculateBitmapSize();
 	void _createFontBitmaps();
 	void _writeFontDesc();
+	void _writeGlyphDesc(QTextStream& stream, const glyph_t& glyph);
 	void _writeFontBitmaps();
 
 	//  Internal data members ----------------------------------------
 
-public: // testing
+private:
 	struct glyph_t
 	{
-		FTypeFactory::glyphBitmapInfo_t bitmap;
+		FTypeFactory::glyphBitmapInfo_t bitmapInfo;
 		FVector2i texturePosition;
-		size_t textureIndex;
+		int textureIndex;
 	};
 
-	struct glyphSorter_t
+	struct glyphSizeSorter_t
 	{
 		bool operator()(const glyph_t& g1, const glyph_t& g2) const {
-			return g1.bitmap.size.y > g2.bitmap.size.y;
+			return g1.bitmapInfo.size.y > g2.bitmapInfo.size.y;
+		}
+	};
+
+	struct glyphCharSorter_t
+	{
+		bool operator()(const glyph_t& g1, const glyph_t& g2) const {
+			return g1.bitmapInfo.charCode < g2.bitmapInfo.charCode;
 		}
 	};
 
@@ -95,6 +106,7 @@ public: // testing
 
 	std::vector<const char*> m_unicodeBlocks;
 	std::vector<glyph_t> m_glyphTable;
+	std::vector<glyph_t> m_spacerTable;
 	std::vector<FImage> m_bitmaps;
 };
 	

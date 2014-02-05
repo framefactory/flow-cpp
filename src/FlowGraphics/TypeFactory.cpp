@@ -171,12 +171,14 @@ bool FTypeFactory::getGlyphInfo(glyphBitmapInfo_t* pGlyphInfo) const
 	// copy glyph metrics to the given glyphBitmapInfo_t
 	FT_GlyphSlot glyph = m_pImpl->glyph;
 	pGlyphInfo->charCode = m_pImpl->charCode;
-	pGlyphInfo->size.set(glyph->bitmap.width, glyph->bitmap.rows);
-	pGlyphInfo->origin.set(glyph->bitmap_left, glyph->bitmap_top);
-	pGlyphInfo->advance.set(glyph->advance.x / 64.0f, glyph->advance.y / 64.0f);
+
 	// pitch and pData are 0 if no bitmap has been rendered for the glyph
 	pGlyphInfo->pitch = glyph->bitmap.pitch;
 	pGlyphInfo->pData = glyph->bitmap.buffer;
+
+	pGlyphInfo->size.set(glyph->bitmap.width, glyph->bitmap.rows);
+	pGlyphInfo->origin.set(glyph->bitmap_left, glyph->bitmap_top);
+	pGlyphInfo->advance.set(glyph->advance.x / 64.0f, glyph->advance.y / 64.0f);
 
 	return true;
 }

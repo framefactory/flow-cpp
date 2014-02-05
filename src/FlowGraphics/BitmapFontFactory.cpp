@@ -152,17 +152,24 @@ void FBitmapFontFactory::_loadGlyphs()
 				}
 
 				glyph_t glyphEntry;
-				if (!m_factory.getGlyphInfo(&glyphEntry.bitmap)) {
+				if (!m_factory.getGlyphInfo(&glyphEntry.bitmapInfo)) {
 					continue;
 				}
 
-				if (glyphEntry.bitmap.pData) {
-					uint32_t numBytes = glyphEntry.bitmap.pitch * glyphEntry.bitmap.size.y;
+				if (glyphEntry.bitmapInfo.pData) {
+					// attach a unique copy of the glyph bitmap to bitmapInfo.pData
+					uint32_t numBytes = glyphEntry.bitmapInfo.pitch * glyphEntry.bitmapInfo.size.y;
 					uint8_t* pGlyphBitmap = new uint8_t[numBytes];
-					memcpy(pGlyphBitmap, glyphEntry.bitmap.pData, numBytes);
-					glyphEntry.bitmap.pData = pGlyphBitmap;
+					memcpy(pGlyphBitmap, glyphEntry.bitmapInfo.pData, numBytes);
+					glyphEntry.bitmapInfo.pData = pGlyphBitmap;
 					m_glyphTable.push_back(glyphEntry);
 					numGlyphs++;
+				}
+				else {
+					// glyphs without bitmap data (e.g. 32 space) are stored separately
+					glyphEntry.textureIndex = -1;
+					glyphEntry.texturePosition.setZero();
+					m_spacerTable.push_back(glyphEntry);
 				}
 			}
 
@@ -182,10 +189,10 @@ size_t FBitmapFontFactory::_fillMap(const FVector2i& mapSize, size_t firstGlyph)
 
 	for (size_t i = firstGlyph; i < m_glyphTable.size(); ++i)
 	{
-		if (!m_glyphTable[i].bitmap.pData)
+		if (!m_glyphTable[i].bitmapInfo.pData)
 			continue;
 
-		FVector2i glyphSize = m_glyphTable[i].bitmap.size + glyphPadding * 2;
+		FVector2i glyphSize = m_glyphTable[i].bitmapInfo.size + glyphPadding * 2;
 		if (!treeMap.insert(glyphSize))
 			return i;
 	}
@@ -196,7 +203,7 @@ size_t FBitmapFontFactory::_fillMap(const FVector2i& mapSize, size_t firstGlyph)
 void FBitmapFontFactory::_calculateBitmapSize()
 {
 	// sort glyphs by descending height
-	std::sort(m_glyphTable.begin(), m_glyphTable.end(), glyphSorter_t());
+	std::sort(m_glyphTable.begin(), m_glyphTable.end(), glyphSizeSorter_t());
 
 	// amount of padding added to glyphs
 	FVector2i glyphPadding(m_glyphPadding, m_glyphPadding);
@@ -205,7 +212,7 @@ void FBitmapFontFactory::_calculateBitmapSize()
 	uint32_t requiredCapacity = 0;
 	for (uint32_t i = 0; i < m_glyphTable.size(); ++i)
 	{
-		FVector2i glyphSize = m_glyphTable[i].bitmap.size + glyphPadding * 2;
+		FVector2i glyphSize = m_glyphTable[i].bitmapInfo.size + glyphPadding * 2;
 		requiredCapacity += (uint32_t)(glyphSize.x * glyphSize.y);
 	}
 
@@ -247,7 +254,7 @@ void FBitmapFontFactory::_calculateBitmapSize()
 			requiredCapacity = 0;
 			for (size_t i = overflowGlyph; i < m_glyphTable.size(); ++i)
 			{
-				FVector2i glyphSize = m_glyphTable[i].bitmap.size + glyphPadding * 2;
+				FVector2i glyphSize = m_glyphTable[i].bitmapInfo.size + glyphPadding * 2;
 				requiredCapacity += (uint32_t)(glyphSize.x * glyphSize.y);
 			}
 
@@ -289,16 +296,16 @@ void FBitmapFontFactory::_createFontBitmaps()
 	for (uint32_t i = 0; i < m_glyphTable.size(); ++i)
 	{
 		glyph_t& currentGlyph = m_glyphTable[i];
-		if (!currentGlyph.bitmap.pData)
+		if (!currentGlyph.bitmapInfo.pData)
 		{
 			currentGlyph.texturePosition.setZero();
 			currentGlyph.textureIndex = 0;
 			continue;
 		}
 
-		FVector2i paddedGlyphSize = currentGlyph.bitmap.size + glyphPadding * 2;
-		int glyphWidth = currentGlyph.bitmap.size.x;
-		int glyphHeight = currentGlyph.bitmap.size.y;
+		FVector2i paddedGlyphSize = currentGlyph.bitmapInfo.size + glyphPadding * 2;
+		int glyphWidth = currentGlyph.bitmapInfo.size.x;
+		int glyphHeight = currentGlyph.bitmapInfo.size.y;
 	
 		const FTreeMap2i::rect_t* pRect	= treeMap.insert(paddedGlyphSize);
 		
@@ -316,7 +323,7 @@ void FBitmapFontFactory::_createFontBitmaps()
 		}
 
 		// store the texture position in the glyph
-		currentGlyph.texturePosition = pRect->pMin();
+		currentGlyph.texturePosition = pRect->pMin() + FVector2i(m_glyphPadding, m_glyphPadding);
 		currentGlyph.textureIndex = bitmapIndex;
 
 		// copy the glyph bitmap to the texture
@@ -327,21 +334,21 @@ void FBitmapFontFactory::_createFontBitmaps()
 
 		uint8_t* pTexData = currentBitmap.data()
 			+ bitmapBytes - bitmapPitch
-			- (currentGlyph.texturePosition.y + m_glyphPadding) * bitmapPitch
-			+ (currentGlyph.texturePosition.x + m_glyphPadding);
+			- currentGlyph.texturePosition.y * bitmapPitch
+			+ currentGlyph.texturePosition.x;
 
-		int32_t glyphPitch = currentGlyph.bitmap.pitch;
+		int32_t glyphPitch = currentGlyph.bitmapInfo.pitch;
 		F_ASSERT(pTexData - (glyphHeight - 1) * bitmapPitch >= currentBitmap.data());
 
 		for (int32_t y = 0; y < glyphHeight; ++y)
 		{
-			const uint8_t* pSrc = currentGlyph.bitmap.pData + y * glyphPitch;
+			const uint8_t* pSrc = currentGlyph.bitmapInfo.pData + y * glyphPitch;
 			uint8_t* pDst = pTexData - y * bitmapPitch;
 			for (int32_t x = 0; x < glyphWidth; ++x)
-				pDst[x] = pSrc[x] / 2 + 128;
+				pDst[x] = pSrc[x];
 		}
 
-		delete[] currentGlyph.bitmap.pData;
+		delete[] currentGlyph.bitmapInfo.pData;
 	}
 
 	F_PRINT << "Bitmap #" << bitmapIndex
@@ -380,26 +387,41 @@ void FBitmapFontFactory::_writeFontDesc()
 	stream << "    ],\n";
 
 	stream << "    \"glyphs\": [\n";
-	for (size_t i = 0; i < m_glyphTable.size(); ++i)
-	{
-		glyph_t& glyph = m_glyphTable[i];
-		stream << "        { \"c\": " << glyph.bitmap.charCode;
-		stream << ", \"i\": " << glyph.textureIndex;
-		stream << ", \"x\": " << glyph.texturePosition.x;
-		stream << ", \"y\": " << glyph.texturePosition.y;
-		stream << ", \"w\": " << glyph.bitmap.size.x;
-		stream << ", \"h\": " << glyph.bitmap.size.y;
-		stream << ", \"ox\": " << glyph.bitmap.origin.x;
-		stream << ", \"oy\": " << glyph.bitmap.origin.y;
-		stream << ", \"ax\": " << glyph.bitmap.advance.x;
-		stream << ", \"ay\": " << glyph.bitmap.advance.y << " }";
-		stream << ((i < m_glyphTable.size() - 1) ? "," : "") << "\n";
+
+	// add spacer glyphs to glyph table
+	for (size_t i = 0, n = m_spacerTable.size(); i < n; ++i) {
+		m_glyphTable.push_back(m_spacerTable[i]);
 	}
+
+	// sort glyphs by ascending char code
+	std::sort(m_glyphTable.begin(), m_glyphTable.end(), glyphCharSorter_t());
+
+	// write glyph descriptions to JSON
+	for (size_t i = 0, n = m_glyphTable.size(); i < n; ++i) {
+		_writeGlyphDesc(stream, m_glyphTable[i]);
+		stream << ((i < n - 1) ? "," : "") << "\n";
+	}
+
 	stream << "    ]\n";
 	stream << "}\n";
 
 	stream.flush();
 }
+
+void FBitmapFontFactory::_writeGlyphDesc(QTextStream& stream, const glyph_t& glyph)
+{
+	stream << "        { \"c\": " << glyph.bitmapInfo.charCode;
+	stream << ", \"i\": " << glyph.textureIndex;
+	stream << ", \"x\": " << glyph.texturePosition.x;
+	stream << ", \"y\": " << glyph.texturePosition.y;
+	stream << ", \"w\": " << glyph.bitmapInfo.size.x;
+	stream << ", \"h\": " << glyph.bitmapInfo.size.y;
+	stream << ", \"ox\": " << glyph.bitmapInfo.origin.x;
+	stream << ", \"oy\": " << glyph.bitmapInfo.origin.y;
+	stream << ", \"ax\": " << glyph.bitmapInfo.advance.x;
+	stream << ", \"ay\": " << glyph.bitmapInfo.advance.y << " }";
+}
+
 
 void FBitmapFontFactory::_writeFontBitmaps()
 {
