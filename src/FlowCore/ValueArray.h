@@ -14,7 +14,12 @@
 #include "FlowCore/ValueType.h"
 #include "FlowCore/AutoConvert.h"
 
+#include "FlowCore/Vector2T.h"
+#include "FlowCore/Vector3T.h"
+#include "FlowCore/Vector4T.h"
+
 #include <QString>
+#include <QByteArray>
 
 class FObject;
 class FArchive;
@@ -76,12 +81,12 @@ public:
 	/// Returns a const pointer to the data element at the given
 	/// channel and dimension. Types must match, no type conversion provided.
 	template <typename T>
-	const T* ptr(size_type channel, size_type dimension) const;
+	const T* ptr(size_type channel, size_type dimension = 0) const;
 
 	/// Returns a pointer to the data element at the given
 	/// channel and dimension. Types must match, no type conversion provided.
 	template <typename T>
-	T* ptr(size_type channel, size_type dimension);
+	T* ptr(size_type channel, size_type dimension = 0);
 	
 	/// Returns a const reference to the first data element.
 	/// Types must match, no type conversion provided.
@@ -96,12 +101,42 @@ public:
 	/// Returns a const reference to the data element at the given
 	/// channel and dimension. Types must match, no type conversion provided.
 	template <typename T>
-	const T& as(size_type channel, size_type dimension) const;
+	const T& as(size_type channel, size_type dimension = 0) const;
 
 	/// Returns a reference to the data element at the given
 	/// channel and dimension. Types must match, no type conversion provided.
 	template <typename T>
-	T& as(size_type channel, size_type dimension);
+	T& as(size_type channel, size_type dimension = 0);
+
+	/// Returns a const 2-vector reference to the data element at the given
+	/// channel and dimension. Types must match, no type conversion provided.
+	template <typename T>
+	const FVector2T<T>& asVector2(size_t channel, size_t dimension = 0) const;
+
+	/// Returns a 2-vector reference to the data element at the given
+	/// channel and dimension. Types must match, no type conversion provided.
+	template <typename T>
+	FVector2T<T>& asVector2(size_t channel, size_t dimension = 0);
+
+	/// Returns a const 3-vector reference to the data element at the given
+	/// channel and dimension. Types must match, no type conversion provided.
+	template <typename T>
+	const FVector3T<T>& asVector3(size_t channel, size_t dimension = 0) const;
+
+	/// Returns a 3-vector reference to the data element at the given
+	/// channel and dimension. Types must match, no type conversion provided.
+	template <typename T>
+	FVector3T<T>& asVector3(size_t channel, size_t dimension = 0);
+
+	/// Returns a const 4-vector reference to the data element at the given
+	/// channel and dimension. Types must match, no type conversion provided.
+	template <typename T>
+	const FVector4T<T>& asVector4(size_t channel, size_t dimension = 0) const;
+
+	/// Returns a 4-vector reference to the data element at the given
+	/// channel and dimension. Types must match, no type conversion provided.
+	template <typename T>
+	FVector4T<T>& asVector4(size_t channel, size_t dimension = 0);
 
 	/// Returns the first data element, converted to the given type.
 	template <typename T>
@@ -110,7 +145,7 @@ public:
 	/// Returns the data element at the given channel and dimension,
 	/// converted to the given type.
 	template <typename T>
-	T to(size_type channel, size_type dimension) const;
+	T to(size_type channel, size_type dimension = 0) const;
 
 	/// Sets the first data element and provides conversion if necessary.
 	template <typename T>
@@ -121,11 +156,38 @@ public:
 	template <typename T>
 	void set(size_type channel, size_type dimension, const T& val);
 
+	/// Sets the data elements at the given channel from the given 2-vector.
+	template <typename T>
+	void setVector2(size_type channel, const FVector2T<T>& vector);
+
+	/// Sets the data elements at the given channel from the given 3-vector.
+	template <typename T>
+	void setVector3(size_type channel, const FVector3T<T>& vector);
+
+	/// Sets the data elements at the given channel from the given 4-vector.
+	template <typename T>
+	void setVector4(size_type channel, const FVector4T<T>& vector);
+
 	/// Returns true if this value array is of the given type.
 	template <typename T>
 	bool is() const;
 
+	/// Returns a raw pointer to the data of the value array.
+	char* rawPtr();
+	/// Returns a const raw pointer to the data of the value array.
+	const char* rawPtr() const;
+
 	//  Public commands ----------------------------------------------
+
+	/// Allocates space for the given type.
+	void allocate(FValueType type, size_type channels, size_type dimensions = 1);
+
+	/// Allocates space for an array of values of the given type.
+	template <typename T>
+	void allocate(T* pVal, size_type channels, size_type dimensions, bool reference);
+	
+	/// Deletes the content of the array.
+	void clear();
 
 	/// Copy/convert the data from the given source.
 	/// Dimensions must agree and the types must be compatible.
@@ -173,6 +235,9 @@ public:
 
 	//  Public queries -----------------------------------------------
 
+	/// Returns a buffer with the raw data.
+	QByteArray toByteArray() const;
+
 	/// Returns true if it is possible to convert the given type to the
 	/// type of this value array.
 	bool canConvertFrom(const FValueArray& source) const;
@@ -198,6 +263,9 @@ public:
 	size_type channelCapacity() const { return m_channelCapacity; }
 	/// Returns the total capacity.
 	size_type capacity() const { return m_dimensionCapacity * m_channelCapacity; }
+
+	/// Returns the size of the data in bytes.
+	size_t byteSize() const;
 
 	/// Returns true if the data array is referenced and will not be deleted.
 	bool isReference() const { return m_isReference; }
@@ -357,6 +425,48 @@ T& FValueArray::as(size_type channel, size_type dimension)
 }
 
 template <typename T>
+const FVector2T<T>& FValueArray::asVector2(size_t channel, size_t dimension) const
+{
+	F_ASSERT(dimension + 2 <= m_dimensionCount);
+	return *((const FVector2T<T>*)(_ptr<T>() + _index(channel, dimension)));
+}
+
+template <typename T>
+FVector2T<T>& FValueArray::asVector2(size_t channel, size_t dimension)
+{
+	F_ASSERT(dimension + 2 <= m_dimensionCount);
+	return *((FVector2T<T>*)(_ptr<T>() + _index(channel, dimension)));
+}
+
+template <typename T>
+const FVector3T<T>& FValueArray::asVector3(size_t channel, size_t dimension) const
+{
+	F_ASSERT(dimension + 3 <= m_dimensionCount);
+	return *((const FVector3T<T>*)(_ptr<T>() + _index(channel, dimension)));
+}
+
+template <typename T>
+FVector3T<T>& FValueArray::asVector3(size_t channel, size_t dimension)
+{
+	F_ASSERT(dimension + 3 <= m_dimensionCount);
+	return *((FVector3T<T>*)(_ptr<T>() + _index(channel, dimension)));
+}
+
+template <typename T>
+const FVector4T<T>& FValueArray::asVector4(size_t channel, size_t dimension) const
+{
+	F_ASSERT(dimension + 4 <= m_dimensionCount);
+	return *((const FVector4T<T>*)(_ptr<T>() + _index(channel, dimension)));
+}
+
+template <typename T>
+FVector4T<T>& FValueArray::asVector4(size_t channel, size_t dimension)
+{
+	F_ASSERT(dimension + 4 <= m_dimensionCount);
+	return *((FVector4T<T>*)(_ptr<T>() + _index(channel, dimension)));
+}
+
+template <typename T>
 T FValueArray::to() const
 {
 	if (is<T>())
@@ -467,12 +577,84 @@ void FValueArray::set(size_type channel, size_type dimension, const T& val)
 }
 
 template <typename T>
+void FValueArray::setVector2(size_type channel, const FVector2T<T>& vector)
+{
+	F_ASSERT(m_dimensionCount >= 2);
+	set(channel, 0, vector.x);
+	set(channel, 1, vector.y);
+}
+
+template <typename T>
+void FValueArray::setVector3(size_type channel, const FVector3T<T>& vector)
+{
+	F_ASSERT(m_dimensionCount >= 3);
+	set(channel, 0, vector.x);
+	set(channel, 1, vector.y);
+	set(channel, 2, vector.z);
+}
+
+template <typename T>
+void FValueArray::setVector4(size_type channel, const FVector4T<T>& vector)
+{
+	F_ASSERT(m_dimensionCount >= 4);
+	set(channel, 0, vector.x);
+	set(channel, 1, vector.y);
+	set(channel, 2, vector.z);
+	set(channel, 3, vector.w);
+}
+
+template <typename T>
 inline bool FValueArray::is() const
 {
 	return m_type == FValueType::fromType<T>();
 }
 
+inline char* FValueArray::rawPtr()
+{
+	return m_isArray ? (char*)m_raw.ptr : (char*)(&m_raw.ptr);
+}
+
+inline const char* FValueArray::rawPtr() const
+{
+	return m_isArray ? (const char*)m_raw.ptr : (const char*)(&m_raw.ptr);
+}
+
 // Public commands -------------------------------------------------------------
+
+inline void FValueArray::allocate(
+	FValueType type, size_type channels, size_type dimensions)
+{
+	_delete();
+	_initialize(type, channels, dimensions, false);
+}
+
+template <typename T>
+void FValueArray::allocate(
+	T* pVal, size_type channels, size_type dimensions, bool reference)
+{
+	_delete();
+	F_ASSERT(channels * dimensions > 0);
+	_initialize(FValueType::fromType<T>(), channels, dimensions, reference);
+
+	if (m_isReference)
+	{
+		m_raw.ptr = pVal;
+	}
+	else
+	{
+		if (m_isArray)
+			for (size_type i = 0, n = channels * dimensions; i < n; ++i)
+				((T*)(m_raw.ptr))[i] = pVal[i];
+		else
+			set<T>(*pVal);
+	}
+}
+
+inline void FValueArray::clear()
+{
+	_delete();
+	_initialize(FValueType::Invalid, 0, 0, false);
+}
 
 inline void FValueArray::convertFrom(const FValueArray& source)
 {

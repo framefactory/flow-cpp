@@ -8,36 +8,29 @@
 // -----------------------------------------------------------------------------
 
 #include "FlowGraphics/PrimitiveType.h"
-
 #include "FlowCore/Archive.h"
-#include <ostream>
 
 // -----------------------------------------------------------------------------
 //  Class FPrimitiveType
 // -----------------------------------------------------------------------------
 
-uint32_t FPrimitiveType::vertexCount() const
-{
-	switch(_state)
-	{
-	case Point: return 1;
-	case Line: return 2;
-	case Triangle: return 3;
-	case Quad: return 4;
-
-	default:
-		return 0;
-	}
-}
-
 const char* FPrimitiveType::name() const
 {
 	switch (_state)
 	{
-		F_ENUM_NAME(Point);
-		F_ENUM_NAME(Line);
-		F_ENUM_NAME(Triangle);
-		F_ENUM_NAME(Quad);
+		F_ENUM_NAME(Undefined);
+		F_ENUM_NAME(Points);
+		F_ENUM_NAME(Lines);
+		F_ENUM_NAME(LineStrip);
+		F_ENUM_NAME(LineLoop);
+		F_ENUM_NAME(Triangles);
+		F_ENUM_NAME(TriangleStrip);
+		F_ENUM_NAME(TriangleFan);
+		F_ENUM_NAME(Patches);
+		F_ENUM_NAME(LinesAdjacency);
+		F_ENUM_NAME(LineStripAdjacency);
+		F_ENUM_NAME(TrianglesAdjacency);
+		F_ENUM_NAME(TriangleStripAdjacency);
 
 	default:
 		return NULL;

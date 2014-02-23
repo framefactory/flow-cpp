@@ -42,6 +42,8 @@ struct FLOWCORE_EXPORT FValueType
 		Object
 	};
 
+	size_t byteCount() const;
+
 	bool isInvalid() const { return _state == Invalid; }
 	bool isNumber() const { return _state > Invalid && _state < String; }
 	bool isString() const { return _state == String; }

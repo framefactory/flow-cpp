@@ -1,30 +1,31 @@
 // -----------------------------------------------------------------------------
-//  File        ChannelType.cpp
+//  File        AttributeRole.cpp
 //  Project     FlowGraphics
 // -----------------------------------------------------------------------------
 //  $Author: Ralph Wiedemeier $
 //  $Revision: 1 $
-//  $Date: 2013/05/21 $
+//  $Date: 2014/02/21 $
 // -----------------------------------------------------------------------------
 
-#include "FlowGraphics/ChannelType.h"
+#include "FlowGraphics/AttributeRole.h"
 #include "FlowCore/Archive.h"
-#include <ostream>
 
 // -----------------------------------------------------------------------------
-//  Class FChannelType
+//  Class FAttributeRole
 // -----------------------------------------------------------------------------
 
-const char* FChannelType::name() const
+const char* FAttributeRole::name() const
 {
 	switch (_state)
 	{
+		F_ENUM_NAME(Undefined);
 		F_ENUM_NAME(Position);
 		F_ENUM_NAME(Normal);
 		F_ENUM_NAME(Tangent);
 		F_ENUM_NAME(Bitangent);
-		F_ENUM_NAME(TexCoord);
+		F_ENUM_NAME(TexCoords);
 		F_ENUM_NAME(Color);
+		F_ENUM_NAME(Weight);
 		F_ENUM_NAME(Custom);
 
 	default:
@@ -32,6 +33,6 @@ const char* FChannelType::name() const
 	}
 }
 
-F_IMPLEMENT_ENUM(FChannelType);
+F_IMPLEMENT_ENUM(FAttributeRole);
 
 // -----------------------------------------------------------------------------

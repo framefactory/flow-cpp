@@ -87,20 +87,28 @@
     <ClInclude Include="..\..\..\..\src\FlowGraphics\BitmapFont.h" />
     <ClInclude Include="..\..\..\..\src\FlowGraphics\BitmapFontFactory.h" />
     <ClInclude Include="..\..\..\..\src\FlowGraphics\Font.h" />
+    <ClInclude Include="..\..\..\..\src\FlowGraphics\Geometry.h" />
     <ClInclude Include="..\..\..\..\src\FlowGraphics\Image.h" />
     <ClInclude Include="..\..\..\..\src\FlowGraphics\ImageFileFormat.h" />
     <ClInclude Include="..\..\..\..\src\FlowGraphics\ImageType.h" />
     <ClInclude Include="..\..\..\..\src\FlowGraphics\Library.h" />
+    <ClInclude Include="..\..\..\..\src\FlowGraphics\PrimitiveType.h" />
     <ClInclude Include="..\..\..\..\src\FlowGraphics\TypeFactory.h" />
+    <ClInclude Include="..\..\..\..\src\FlowGraphics\AttributeRole.h" />
+    <ClInclude Include="..\..\..\..\src\FlowGraphics\VertexLayout.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\..\src\FlowGraphics\BitmapFont.cpp" />
     <ClCompile Include="..\..\..\..\src\FlowGraphics\BitmapFontFactory.cpp" />
     <ClCompile Include="..\..\..\..\src\FlowGraphics\Font.cpp" />
+    <ClCompile Include="..\..\..\..\src\FlowGraphics\Geometry.cpp" />
     <ClCompile Include="..\..\..\..\src\FlowGraphics\Image.cpp" />
     <ClCompile Include="..\..\..\..\src\FlowGraphics\ImageFileFormat.cpp" />
     <ClCompile Include="..\..\..\..\src\FlowGraphics\ImageType.cpp" />
+    <ClCompile Include="..\..\..\..\src\FlowGraphics\PrimitiveType.cpp" />
     <ClCompile Include="..\..\..\..\src\FlowGraphics\TypeFactory.cpp" />
+    <ClCompile Include="..\..\..\..\src\FlowGraphics\AttributeRole.cpp" />
+    <ClCompile Include="..\..\..\..\src\FlowGraphics\VertexLayout.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

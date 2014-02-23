@@ -14,6 +14,30 @@
 //  Class FValueType
 // -----------------------------------------------------------------------------
 
+size_t FValueType::byteCount() const
+{
+	switch (_state)
+	{
+	case Invalid: return 0;
+	case Float: return sizeof(float);
+	case Double: return sizeof(double);
+	case Bool: return sizeof(bool);
+	case Int8: return sizeof(int8_t);
+	case UInt8: return sizeof(uint8_t);
+	case Int16: return sizeof(int16_t);
+	case UInt16: return sizeof(uint16_t);
+	case Int32: return sizeof(int32_t);
+	case UInt32: return sizeof(uint32_t);
+	case Int64: return sizeof(int64_t);
+	case UInt64: return sizeof(uint64_t);
+	case String: return 0;
+	case Object: return 0;
+
+	default:
+		return NULL;
+	}
+}
+
 const char* FValueType::name() const
 {
 	switch (_state)

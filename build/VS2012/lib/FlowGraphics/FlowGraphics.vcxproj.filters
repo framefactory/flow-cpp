@@ -24,6 +24,9 @@
     <Filter Include="Source Files\Font">
       <UniqueIdentifier>{36bd4488-969d-47c3-8fed-fbcd1b6e616e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Geometry">
+      <UniqueIdentifier>{5388bbef-5472-474a-8b0e-36435640237b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\src\FlowGraphics\Library.h">
@@ -50,6 +53,18 @@
     <ClInclude Include="..\..\..\..\src\FlowGraphics\TypeFactory.h">
       <Filter>Source Files\Font</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\src\FlowGraphics\VertexLayout.h">
+      <Filter>Source Files\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\src\FlowGraphics\AttributeRole.h">
+      <Filter>Source Files\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\src\FlowGraphics\Geometry.h">
+      <Filter>Source Files\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\src\FlowGraphics\PrimitiveType.h">
+      <Filter>Source Files\Geometry</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\..\src\FlowGraphics\Image.cpp">
@@ -72,6 +87,18 @@
     </ClCompile>
     <ClCompile Include="..\..\..\..\src\FlowGraphics\TypeFactory.cpp">
       <Filter>Source Files\Font</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\src\FlowGraphics\VertexLayout.cpp">
+      <Filter>Source Files\Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\src\FlowGraphics\AttributeRole.cpp">
+      <Filter>Source Files\Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\src\FlowGraphics\Geometry.cpp">
+      <Filter>Source Files\Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\src\FlowGraphics\PrimitiveType.cpp">
+      <Filter>Source Files\Geometry</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

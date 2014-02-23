@@ -44,17 +44,19 @@ void FTime::_setTimecode(const QString& timecode, int fps)
 
 QString FTime::_getTimecode(int fps) const
 {
-	if (fps < 0) {
-		return QString("%1:%2:%3")
-			.arg(hour(), 2, 10, QLatin1Char('0'))
-			.arg(minute(), 2, 10, QLatin1Char('0'))
-			.arg(second(), 2, 10, QLatin1Char('0'));
+	QString hmsText = QString("%1:%2:%3")
+		.arg(hour(), 2, 10, QLatin1Char('0'))
+		.arg(minute(), 2, 10, QLatin1Char('0'))
+		.arg(second(), 2, 10, QLatin1Char('0'));
+
+	if (fps <= 0) {
+		return hmsText;
 	}
 
 	int d = (fps > 100) ? 3 : ((fps > 10) ? 2 : 1);
 	bool f = fps == 10 || fps == 100 || fps == 1000;
 
-	return QString("%1%2").arg(f ? "." : ":")
+	return QString("%1%2%3").arg(hmsText).arg(f ? "." : ":")
 		.arg(frame(fps), d, 10, QLatin1Char('0'));
 }
 

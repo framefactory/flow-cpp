@@ -1,5 +1,5 @@
 // -----------------------------------------------------------------------------
-//  File        ChannelType.h
+//  File        PrimitiveType.h
 //  Project     FlowGraphics
 // -----------------------------------------------------------------------------
 //  $Author: Ralph Wiedemeier $
@@ -7,37 +7,41 @@
 //  $Date: 2013/05/21 $
 // -----------------------------------------------------------------------------
 
-#ifndef FLOWGRAPHICS_CHANNELTYPE_H
-#define FLOWGRAPHICS_CHANNELTYPE_H
+#ifndef FLOWGRAPHICS_PRIMITIVETYPE_H
+#define FLOWGRAPHICS_PRIMITIVETYPE_H
 
 #include "FlowGraphics/Library.h"
-#include <iosfwd>
+
 class FArchive;
 
 // -----------------------------------------------------------------------------
-//  Class FChannelType
+//  Class FPrimitiveType
 // -----------------------------------------------------------------------------
 
-struct FLOWGRAPHICS_EXPORT FChannelType
+struct FLOWGRAPHICS_EXPORT FPrimitiveType
 {
 	typedef uint8_t value_type;
 
 	enum enum_type : value_type
 	{
-		Position,
-		Normal,
-		Tangent,
-		Bitangent,
-		TexCoord,
-		Color,
-		Custom
+		Undefined,
+		Points,
+		Lines,
+		LineStrip,
+		LineLoop,
+		Triangles,
+		TriangleStrip,
+		TriangleFan,
+		Patches,
+		LinesAdjacency,
+		LineStripAdjacency,
+		TrianglesAdjacency,
+		TriangleStripAdjacency,
 	};
 
-	static size_t count() { return (size_t)Custom + 1; }
-
-	F_DECLARE_ENUM(FLOWGRAPHICS_EXPORT, FChannelType, Position);
+	F_DECLARE_ENUM(FLOWGRAPHICS_EXPORT, FPrimitiveType, Triangles);
 };
 	
 // -----------------------------------------------------------------------------
 
-#endif // FLOWGRAPHICS_CHANNELTYPE_H
+#endif // FLOWGRAPHICS_PRIMITIVETYPE_H

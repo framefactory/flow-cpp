@@ -77,7 +77,7 @@ void FValueArray::serialize(FArchive& ar, bool serializeRawData /* = true */)
 		F_ASSERT(m_type == FValueType::Invalid);
 		_delete();
 
-		uint32_t type, isReference;
+		uint8_t type, isReference;
 		size_type dimensions, channels;
 		ar >> type;
 		ar >> isReference;
@@ -119,8 +119,8 @@ void FValueArray::serialize(FArchive& ar, bool serializeRawData /* = true */)
 	}
 	else // isWriting
 	{
-		ar << m_type;
-		ar << m_isReference;
+		ar << (uint8_t)m_type;
+		ar << (uint8_t)m_isReference;
 		ar << m_dimensionCount;
 		ar << m_channelCount;
 
@@ -151,6 +151,16 @@ void FValueArray::serialize(FArchive& ar, bool serializeRawData /* = true */)
 }
 
 // Public queries --------------------------------------------------------------
+
+QByteArray FValueArray::toByteArray() const
+{
+	return QByteArray(rawPtr(), byteSize());
+}
+
+size_t FValueArray::byteSize() const
+{
+	return size() * type().byteCount();
+}
 
 QString FValueArray::typeDescription() const
 {
