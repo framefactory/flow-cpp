@@ -29,7 +29,7 @@ struct FLOWGRAPHICS_EXPORT FAttributeRole
 		Normal,
 		Tangent,
 		Bitangent,
-		TexCoords,
+		TexCoord,
 		Color,
 		Weight,
 		Custom

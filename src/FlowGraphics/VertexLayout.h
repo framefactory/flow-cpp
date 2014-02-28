@@ -108,7 +108,7 @@ public:
 	bool hasNormal() const { return m_roleIndex[FAttributeRole::Normal] >= 0; }
 	bool hasTangent() const { return m_roleIndex[FAttributeRole::Tangent] >= 0; }
 	bool hasBitangent() const { return m_roleIndex[FAttributeRole::Bitangent] >= 0; }
-	bool hasTexCoords() const { return m_roleIndex[FAttributeRole::TexCoords] >= 0; }
+	bool hasTexCoords() const { return m_roleIndex[FAttributeRole::TexCoord] >= 0; }
 	bool hasColor() const { return m_roleIndex[FAttributeRole::Color] >= 0; }
 	bool hasWeight() const { return m_roleIndex[FAttributeRole::Weight] >= 0; }
 

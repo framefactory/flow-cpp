@@ -21,7 +21,7 @@ FVertexLayout FVertexLayout::createP3N3T2()
 	FVertexLayout layout;
 	layout.addAttribute(FAttributeRole::Position, FValueType::Float, 3);
 	layout.addAttribute(FAttributeRole::Normal, FValueType::Float, 3);
-	layout.addAttribute(FAttributeRole::TexCoords, FValueType::Float, 2);
+	layout.addAttribute(FAttributeRole::TexCoord, FValueType::Float, 2);
 	return layout;
 }
 
@@ -29,7 +29,7 @@ FVertexLayout FVertexLayout::createP3T2()
 {
 	FVertexLayout layout;
 	layout.addAttribute(FAttributeRole::Position, FValueType::Float, 3);
-	layout.addAttribute(FAttributeRole::TexCoords, FValueType::Float, 2);
+	layout.addAttribute(FAttributeRole::TexCoord, FValueType::Float, 2);
 	return layout;
 }
 
@@ -37,7 +37,7 @@ FVertexLayout FVertexLayout::createP2T2()
 {
 	FVertexLayout layout;
 	layout.addAttribute(FAttributeRole::Position, FValueType::Float, 2);
-	layout.addAttribute(FAttributeRole::TexCoords, FValueType::Float, 2);
+	layout.addAttribute(FAttributeRole::TexCoord, FValueType::Float, 2);
 	return layout;
 }
 
@@ -102,7 +102,7 @@ void FVertexLayout::addBitangent(FValueType type /* = FValueType::Float */)
 void FVertexLayout::addTexCoords(FValueType type /* = FValueType::Float */,
 								 size_t size /* = 2 */)
 {
-	addAttribute(FAttributeRole::TexCoords, type, size);
+	addAttribute(FAttributeRole::TexCoord, type, size);
 }
 
 void FVertexLayout::addColor(FValueType type /* = FValueType::Float */,
@@ -186,7 +186,7 @@ const FVertexAttribute& FVertexLayout::bitangent(size_t ordinal /* = 0 */) const
 
 const FVertexAttribute& FVertexLayout::texCoords(size_t ordinal /* = 0 */) const
 {
-	return attribute(FAttributeRole::TexCoords, ordinal);
+	return attribute(FAttributeRole::TexCoord, ordinal);
 }
 
 const FVertexAttribute& FVertexLayout::color(size_t ordinal /* = 0 */) const

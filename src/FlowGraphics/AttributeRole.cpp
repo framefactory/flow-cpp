@@ -23,7 +23,7 @@ const char* FAttributeRole::name() const
 		F_ENUM_NAME(Normal);
 		F_ENUM_NAME(Tangent);
 		F_ENUM_NAME(Bitangent);
-		F_ENUM_NAME(TexCoords);
+		F_ENUM_NAME(TexCoord);
 		F_ENUM_NAME(Color);
 		F_ENUM_NAME(Weight);
 		F_ENUM_NAME(Custom);
