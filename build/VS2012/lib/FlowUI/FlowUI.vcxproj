@@ -16,21 +16,21 @@
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Moc%27ing LogWidget.h...</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\..\..\..\..\obj\FlowUI\$(PlatformName)_$(ConfigurationName)\moc\moc_%(Filename).cpp</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\..\..\..\..\obj\FlowUI\$(PlatformName)_$(ConfigurationName)\moc\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DWIN64 -DQT_DLL -DQT_CORE_LIB -DQT_GUI_LIB -DFLOWUI_LIB -DQT_WIDGETS_LIB -D_LIB -D_UNICODE "-I$(QTDIR)\include" "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I.\..\..\..\..\obj\FlowUI\$(PlatformName)_$(ConfigurationName)\moc" "-I$(QTDIR)\include\QtWidgets" "-I$(FLOW_DIR)\src" "-I$(BOOST_DIR)\."</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\..\..\..\..\obj\FlowUI\$(PlatformName)_$(ConfigurationName)\moc\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DWIN64 -DQT_DLL -DQT_CORE_LIB -DFLOWUI_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -D_LIB -D_UNICODE  "-I$(QTDIR)\include" "-I$(QTDIR)\include\QtCore" "-I.\..\..\..\..\obj\FlowUI\$(PlatformName)_$(ConfigurationName)\moc" "-I$(QTDIR)\include\QtWidgets" "-I$(QTDIR)\include\QtGui" "-I$(FLOW_DIR)\src" "-I$(BOOST_DIR)\."</Command>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Moc%27ing LogWidget.h...</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\..\..\..\..\obj\FlowUI\$(PlatformName)_$(ConfigurationName)\moc\moc_%(Filename).cpp</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\..\..\..\..\obj\FlowUI\$(PlatformName)_$(ConfigurationName)\moc\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DWIN64 -DQT_DLL -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DFLOWUI_LIB -DQT_WIDGETS_LIB -D_LIB -D_UNICODE "-I$(QTDIR)\include" "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I.\..\..\..\..\obj\FlowUI\$(PlatformName)_$(ConfigurationName)\moc" "-I$(QTDIR)\include\QtWidgets" "-I$(FLOW_DIR)\src" "-I$(BOOST_DIR)\."</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\..\..\..\..\obj\FlowUI\$(PlatformName)_$(ConfigurationName)\moc\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DWIN64 -DQT_DLL -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DFLOWUI_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -D_LIB -D_UNICODE  "-I$(QTDIR)\include" "-I$(QTDIR)\include\QtCore" "-I.\..\..\..\..\obj\FlowUI\$(PlatformName)_$(ConfigurationName)\moc" "-I$(QTDIR)\include\QtWidgets" "-I$(QTDIR)\include\QtGui" "-I$(FLOW_DIR)\src" "-I$(BOOST_DIR)\."</Command>
     </CustomBuild>
     <CustomBuild Include="..\..\..\..\src\FlowUI\MainWindowBase.h">
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Moc%27ing MainWindowBase.h...</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\..\..\..\..\obj\FlowUI\$(PlatformName)_$(ConfigurationName)\moc\moc_%(Filename).cpp</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\..\..\..\..\obj\FlowUI\$(PlatformName)_$(ConfigurationName)\moc\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DWIN64 -DQT_DLL -DQT_CORE_LIB -DQT_GUI_LIB -DFLOWUI_LIB -DQT_WIDGETS_LIB -D_LIB -D_UNICODE  "-I$(QTDIR)\include" "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I.\..\..\..\..\obj\FlowUI\$(PlatformName)_$(ConfigurationName)\moc" "-I$(QTDIR)\include\QtWidgets" "-I$(FLOW_DIR)\src" "-I$(BOOST_DIR)\."</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\..\..\..\..\obj\FlowUI\$(PlatformName)_$(ConfigurationName)\moc\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DWIN64 -DQT_DLL -DQT_CORE_LIB -DFLOWUI_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -D_LIB -D_UNICODE  "-I$(QTDIR)\include" "-I$(QTDIR)\include\QtCore" "-I.\..\..\..\..\obj\FlowUI\$(PlatformName)_$(ConfigurationName)\moc" "-I$(QTDIR)\include\QtWidgets" "-I$(QTDIR)\include\QtGui" "-I$(FLOW_DIR)\src" "-I$(BOOST_DIR)\."</Command>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Moc%27ing MainWindowBase.h...</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\..\..\..\..\obj\FlowUI\$(PlatformName)_$(ConfigurationName)\moc\moc_%(Filename).cpp</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\..\..\..\..\obj\FlowUI\$(PlatformName)_$(ConfigurationName)\moc\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DWIN64 -DQT_DLL -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DFLOWUI_LIB -DQT_WIDGETS_LIB -D_LIB -D_UNICODE  "-I$(QTDIR)\include" "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I.\..\..\..\..\obj\FlowUI\$(PlatformName)_$(ConfigurationName)\moc" "-I$(QTDIR)\include\QtWidgets" "-I$(FLOW_DIR)\src" "-I$(BOOST_DIR)\."</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\..\..\..\..\obj\FlowUI\$(PlatformName)_$(ConfigurationName)\moc\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DWIN64 -DQT_DLL -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DFLOWUI_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -D_LIB -D_UNICODE  "-I$(QTDIR)\include" "-I$(QTDIR)\include\QtCore" "-I.\..\..\..\..\obj\FlowUI\$(PlatformName)_$(ConfigurationName)\moc" "-I$(QTDIR)\include\QtWidgets" "-I$(QTDIR)\include\QtGui" "-I$(FLOW_DIR)\src" "-I$(BOOST_DIR)\."</Command>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
@@ -109,8 +109,8 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" />
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <PreprocessorDefinitions>UNICODE;WIN32;WIN64;QT_DLL;QT_CORE_LIB;QT_GUI_LIB;FLOWUI_LIB;QT_WIDGETS_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(QTDIR)\include;$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;.\..\..\..\..\obj\FlowUI\$(PlatformName)_$(ConfigurationName)\moc;$(QTDIR)\include\QtWidgets;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>UNICODE;WIN32;WIN64;QT_DLL;QT_CORE_LIB;FLOWUI_LIB;QT_WIDGETS_LIB;QT_GUI_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(QTDIR)\include;$(QTDIR)\include\QtCore;.\..\..\..\..\obj\FlowUI\$(PlatformName)_$(ConfigurationName)\moc;$(QTDIR)\include\QtWidgets;$(QTDIR)\include\QtGui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Disabled</Optimization>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
@@ -120,7 +120,7 @@
       <OutputFile>$(OutDir)\$(ProjectName).lib</OutputFile>
       <AdditionalLibraryDirectories>$(QTDIR)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>qtmaind.lib;Qt5Cored.lib;Qt5Guid.lib;Qt5Widgetsd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>qtmaind.lib;Qt5Cored.lib;Qt5Widgetsd.lib;Qt5Guid.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <Lib>
       <AdditionalDependencies>FlowCore.lib</AdditionalDependencies>
@@ -128,8 +128,8 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <PreprocessorDefinitions>UNICODE;WIN32;WIN64;QT_DLL;QT_NO_DEBUG;NDEBUG;QT_CORE_LIB;QT_GUI_LIB;FLOWUI_LIB;QT_WIDGETS_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(QTDIR)\include;$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;.\..\..\..\..\obj\FlowUI\$(PlatformName)_$(ConfigurationName)\moc;$(QTDIR)\include\QtWidgets;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>UNICODE;WIN32;WIN64;QT_DLL;QT_NO_DEBUG;NDEBUG;QT_CORE_LIB;FLOWUI_LIB;QT_WIDGETS_LIB;QT_GUI_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(QTDIR)\include;$(QTDIR)\include\QtCore;.\..\..\..\..\obj\FlowUI\$(PlatformName)_$(ConfigurationName)\moc;$(QTDIR)\include\QtWidgets;$(QTDIR)\include\QtGui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat />
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
     </ClCompile>
@@ -138,7 +138,7 @@
       <OutputFile>$(OutDir)\$(ProjectName).lib</OutputFile>
       <AdditionalLibraryDirectories>$(QTDIR)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>false</GenerateDebugInformation>
-      <AdditionalDependencies>qtmain.lib;Qt5Core.lib;Qt5Gui.lib;Qt5Widgets.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>qtmain.lib;Qt5Core.lib;Qt5Widgets.lib;Qt5Gui.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <Lib>
       <AdditionalDependencies>FlowCore.lib</AdditionalDependencies>

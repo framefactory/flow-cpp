@@ -10,7 +10,6 @@
 #include "FlowUI/MainWindowBase.h"
 //#include "FlowCore/MemoryTracer.h"
 
-#include <QtGui>
 #include <QtWidgets>
 
 // -----------------------------------------------------------------------------
