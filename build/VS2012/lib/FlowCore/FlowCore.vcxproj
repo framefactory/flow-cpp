@@ -44,6 +44,7 @@
     <ClInclude Include="..\..\..\..\src\FlowCore\Archive.h" />
     <ClInclude Include="..\..\..\..\src\FlowCore\AutoConvert.h" />
     <ClInclude Include="..\..\..\..\src\FlowCore\Bit.h" />
+    <ClInclude Include="..\..\..\..\src\FlowCore\Range3T.h" />
     <ClInclude Include="..\..\..\..\src\FlowCore\CriticalSection.h" />
     <ClInclude Include="..\..\..\..\src\FlowCore\FastMat.h" />
     <ClInclude Include="..\..\..\..\src\FlowCore\FastVec.h" />

@@ -254,6 +254,9 @@
     <ClInclude Include="..\..\..\..\src\FlowCore\Timer.h">
       <Filter>Source Files\Time</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\src\FlowCore\Range3T.h">
+      <Filter>Source Files\Math</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="..\..\..\..\src\FlowCore\UnitTest.h">

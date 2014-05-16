@@ -70,12 +70,12 @@ public:
 	bool isNull() const { return isEmpty(); }
 
 	/// Returns true if the given range is fully included in this one.
-	bool includes(const FRangeT<T>& other);
+	bool includes(const FRangeT<T>& other) const;
 
 	/// Returns true if this and the given range overlap. Also returns
 	/// true if the overlap consists of a single point, e.g. if
 	/// this range's upper bound equals other range's lower bound.
-	bool intersects(const FRangeT<T>& other);
+	bool intersects(const FRangeT<T>& other) const;
 
 	//  Internal data members ----------------------------------------
 
@@ -87,40 +87,40 @@ private:
 // Members ---------------------------------------------------------------------
 
 template <typename T>
-void FRangeT<T>::set(T lowerBound, T upperBound)
+inline void FRangeT<T>::set(T lowerBound, T upperBound)
 {
 	m_lowerBound = lowerBound;
 	m_upperBound = upperBound;
 }
 
 template <typename T>
-void FRangeT<T>::setLowerBound(T lowerBound)
+inline void FRangeT<T>::setLowerBound(T lowerBound)
 {
 	m_lowerBound = lowerBound;
 }
 
 template <typename T>
-void FRangeT<T>::setUpperBound(T upperBound)
+inline void FRangeT<T>::setUpperBound(T upperBound)
 {
 	m_upperBound = upperBound;
 }
 
 template <typename T>
-void FRangeT<T>::move(T offset)
+inline void FRangeT<T>::move(T offset)
 {
 	m_lowerBound += offset;
 	m_upperBound += offset;
 }
 
 template <typename T>
-void FRangeT<T>::uniteWith(const FRangeT<T>& other)
+inline void FRangeT<T>::uniteWith(const FRangeT<T>& other)
 {
 	m_lowerBound = fMin(m_lowerBound, other.m_lowerBound);
 	m_upperBound = fMax(m_upperBound, other.m_upperBound);
 }
 
 template <typename T>
-void FRangeT<T>::intersectWith(const FRangeT<T>& other)
+inline void FRangeT<T>::intersectWith(const FRangeT<T>& other)
 {
 	m_lowerBound = fMax(m_lowerBound, other.m_lowerBound);
 	m_upperBound = fMin(m_upperBound, other.m_upperBound);
@@ -130,21 +130,21 @@ void FRangeT<T>::intersectWith(const FRangeT<T>& other)
 }
 
 template <typename T>
-void FRangeT<T>::normalize()
+inline void FRangeT<T>::normalize()
 {
 	if (m_lowerBound > m_upperBound)
 		std::swap(m_lowerBound, m_upperBound);
 }
 
 template <typename T>
-bool FRangeT<T>::includes(const FRangeT<T>& other)
+inline bool FRangeT<T>::includes(const FRangeT<T>& other)
 {
 	return m_lowerBound <= other.m_lowerBound
 		&& m_upperBound >= other.m_upperBound;
 }
 
 template <typename T>
-bool FRangeT<T>::intersects(const FRangeT<T>& other)
+inline bool FRangeT<T>::intersects(const FRangeT<T>& other)
 {
 	return m_lowerBound <= other.m_upperBound
 		|| m_upperBound >= other.m_lowerBound;
