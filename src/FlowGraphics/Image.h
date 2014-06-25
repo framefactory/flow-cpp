@@ -14,6 +14,8 @@
 #include "FlowGraphics/ImageType.h"
 #include "FlowGraphics/ImageFileFormat.h"
 
+#include "FlowCore/Range3T.h"
+
 #include <QString>
 
 struct _imageImpl_t;
@@ -58,6 +60,7 @@ public:
 
 	FImage clone() const;
 	FImage convert(FImageType targetType) const;
+	FImage map(FImageType targetType, const FRange3d& range, FRange3d* pBounds = NULL) const;
 	FImage copy(uint32_t left, uint32_t top, uint32_t width, uint32_t height) const;
 	FImage resize(uint32_t width, uint32_t height) const;
 

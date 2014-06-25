@@ -230,9 +230,6 @@
     <ClInclude Include="..\..\..\..\src\FlowCore\UnicodeTraits.h">
       <Filter>Source Files\Locale</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\src\FlowCore\RangeT.h">
-      <Filter>Source Files\Math</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\..\src\FlowCore\Rect2T.h">
       <Filter>Source Files\Math</Filter>
     </ClInclude>
@@ -255,6 +252,9 @@
       <Filter>Source Files\Time</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\src\FlowCore\Range3T.h">
+      <Filter>Source Files\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\src\FlowCore\RangeT.h">
       <Filter>Source Files\Math</Filter>
     </ClInclude>
   </ItemGroup>

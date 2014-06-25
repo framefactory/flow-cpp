@@ -12,6 +12,9 @@
 
 #include "FlowCore/Library.h"
 
+#include <QString>
+#include <limits>
+
 // -----------------------------------------------------------------------------
 //  Class FRangeT
 // -----------------------------------------------------------------------------
@@ -35,8 +38,16 @@ public:
 	void setLowerBound(T lowerBound);
 	void setUpperBound(T upperBound);
 
+	/// Invalidates the range by setting the lower bound to the maximum value
+	/// and the upper bound to the minimum value.
+	void invalidate();
+
 	/// Moves the upper and lower bound by the given offset.
 	void move(T offset);
+
+	/// Includes the given point. The range is extended such that
+	/// the given value lies inside.
+	void include(T val);
 
 	/// Unites this with the given range. The result is a range that
 	/// covers both input ranges.
@@ -69,6 +80,9 @@ public:
 	bool isEmpty() const { return m_lowerBound == m_upperBound; }
 	bool isNull() const { return isEmpty(); }
 
+	/// Returns true if the given value is included in the range.
+	bool includes(T val) const;
+
 	/// Returns true if the given range is fully included in this one.
 	bool includes(const FRangeT<T>& other) const;
 
@@ -76,6 +90,9 @@ public:
 	/// true if the overlap consists of a single point, e.g. if
 	/// this range's upper bound equals other range's lower bound.
 	bool intersects(const FRangeT<T>& other) const;
+
+	/// Returns a text representation of the range.
+	QString toString() const;
 
 	//  Internal data members ----------------------------------------
 
@@ -106,10 +123,24 @@ inline void FRangeT<T>::setUpperBound(T upperBound)
 }
 
 template <typename T>
+inline void FRangeT<T>::invalidate()
+{
+	m_lowerBound = std::numeric_limits<T>::max();
+	m_upperBound = std::numeric_limits<T>::lowest();
+}
+
+template <typename T>
 inline void FRangeT<T>::move(T offset)
 {
 	m_lowerBound += offset;
 	m_upperBound += offset;
+}
+
+template <typename T>
+inline void FRangeT<T>::include(T val)
+{
+	m_lowerBound = fMin(m_lowerBound, val);
+	m_upperBound = fMax(m_upperBound, val);
 }
 
 template <typename T>
@@ -137,18 +168,43 @@ inline void FRangeT<T>::normalize()
 }
 
 template <typename T>
-inline bool FRangeT<T>::includes(const FRangeT<T>& other)
+inline bool FRangeT<T>::includes(const FRangeT<T>& other) const
 {
 	return m_lowerBound <= other.m_lowerBound
 		&& m_upperBound >= other.m_upperBound;
 }
 
 template <typename T>
-inline bool FRangeT<T>::intersects(const FRangeT<T>& other)
+inline bool FRangeT<T>::includes(T val) const
+{
+	return m_lowerBound <= val && val <= m_upperBound;
+}
+
+template <typename T>
+inline bool FRangeT<T>::intersects(const FRangeT<T>& other) const
 {
 	return m_lowerBound <= other.m_upperBound
 		|| m_upperBound >= other.m_lowerBound;
 }
+
+template <typename T>
+QString FRangeT<T>::toString() const
+{
+	return QString("%1 - %2")
+		.arg(m_lowerBound)
+		.arg(m_upperBound);
+}
+
+// Typedefs --------------------------------------------------------------------
+
+/// Scalar range of type float
+typedef FRangeT<float> FRange1f;
+
+/// Scalar range of type double
+typedef FRangeT<double> FRange1d;
+
+/// Scalar range of type integer
+typedef FRangeT<int> FRange1i;
 
 // -----------------------------------------------------------------------------
 

@@ -13,6 +13,7 @@
 #include "FlowCore/Library.h"
 #include "FlowCore/Vector3T.h"
 
+#include <QString>
 #include <limits>
 
 // -----------------------------------------------------------------------------
@@ -50,6 +51,10 @@ public:
 	/// Moves the upper and lower bound by the given offset.
 	void move(const FVector3T<T>& offset);
 
+	/// Includes the given point. The range is extended such that
+	/// the given point lies inside.
+	void include(const FVector3T<T>& point);
+
 	/// Unites this with the given range. The result is a range that
 	/// covers both input ranges.
 	void uniteWith(const FRange3T<T>& other);
@@ -67,20 +72,44 @@ public:
 	const FVector3T<T>& lowerBound() const { return m_lowerBound; }
 	const FVector3T<T>& upperBound() const { return m_upperBound; }
 
+	/// Returns the distance between lower and upper bound. The result can
+	/// be negative if the range is not normal, i.e. upper bound is smaller
+	/// than lower bound.
 	const FVector3T<T> size() const;
+
+	/// Interprets the range as a 3D box and returns its volume.
 	const T volume() const;
 
+	/// Returns the difference between upper and lower bound of the x component.
 	const T sizeX() const { return m_upperBound.x - m_lowerBound.x; }
+	
+	/// Returns the difference between upper and lower bound of the y component.
 	const T sizeY() const { return m_upperBound.y - m_lowerBound.y; }
+
+	/// Returns the difference between upper and lower bound of the z component.
 	const T sizeZ() const { return m_upperBound.z - m_lowerBound.z; }
 
+	/// A range is valid if for each component the upper bound is greater
+	/// or equal to the lower bound.
 	bool isValid() const;
+	/// A range is empty if the upper bound is equal to the lower bound.
 	bool isEmpty() const;
+	/// Same as isEmpty().
 	bool isNull() const { return isEmpty(); }
 
+	/// Returns true if the given range is fully included in this one.
 	bool includes(const FRange3T<T>& range) const;
+
+	/// Returns true if the given point is included in the range.
 	bool includes(const FVector3T<T>& point) const;
+
+	/// Returns true if this and the given range overlap. Also returns
+	/// true if the overlap consists of a single point, e.g. if
+	/// this range's upper bound equals other range's lower bound.
 	bool intersects(const FRange3T<T>& range) const;
+
+	/// Returns a text representation of the range.
+	QString toString() const;
 
 	//  Internal data members ----------------------------------------
 
@@ -148,6 +177,13 @@ inline void FRange3T<T>::move(const FVector3T<T>& offset)
 {
 	m_lowerBound += offset;
 	m_upperBound += offset;
+}
+
+template <typename T>
+inline void FRange3T<T>::include(const FVector3T<T>& point)
+{
+	m_lowerBound = fMin(m_lowerBound, point);
+	m_upperBound = fMax(m_upperBound, point);
 }
 
 template <typename T>
@@ -237,15 +273,23 @@ inline bool FRange3T<T>::intersects(const FRange3T<T>& other) const
 		 && m_upperBound.z >= other.m_lowerBound.z);
 }
 
+template <typename T>
+QString FRange3T<T>::toString() const
+{
+	return QString("%1 - %2")
+		.arg(m_lowerBound.toString())
+		.arg(m_upperBound.toString());
+}
+
 // Typedefs --------------------------------------------------------------------
 
-/// 3-component vector of type float
+/// 3-component range of type float
 typedef FRange3T<float> FRange3f;
 
-/// 3-component vector of type double
+/// 3-component range of type double
 typedef FRange3T<double> FRange3d;
 
-/// 3-component vector of type integer
+/// 3-component range of type integer
 typedef FRange3T<int> FRange3i;
 
 // -----------------------------------------------------------------------------

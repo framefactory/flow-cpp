@@ -10,9 +10,9 @@
 #include "FlowGraphics/GeometryLoader.h"
 #include "FlowCore/MemoryTracer.h"
 
-#include <assimp/cimport.h>
-#include <assimp/scene.h>
-#include <assimp/postprocess.h>
+//#include <assimp/cimport.h>
+//#include <assimp/scene.h>
+//#include <assimp/postprocess.h>
 
 // -----------------------------------------------------------------------------
 //  Class FGeometryLoader

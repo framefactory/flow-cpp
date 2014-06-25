@@ -71,6 +71,9 @@
     <ClInclude Include="..\..\..\..\src\FlowGraphics\GeometryLoader.h">
       <Filter>Source Files\Geometry</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\src\FlowGraphics\ImageTools.h">
+      <Filter>Source Files\Image</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\..\src\FlowGraphics\Image.cpp">
@@ -108,6 +111,9 @@
     </ClCompile>
     <ClCompile Include="..\..\..\..\src\FlowGraphics\GeometryLoader.cpp">
       <Filter>Source Files\Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\src\FlowGraphics\ImageTools.cpp">
+      <Filter>Source Files\Image</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
