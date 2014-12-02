@@ -25,6 +25,9 @@ class FLOWCORE_EXPORT FLogMessage
 	//  Constructors and destructor ----------------------------------
 
 public:
+    /// Default constructor.
+    FLogMessage();
+
 	/// Create a log message with the given type and text.
 	/// The current date and time is recorded with the message.
 	FLogMessage(FLogType type, const QString& module, const QString& text);

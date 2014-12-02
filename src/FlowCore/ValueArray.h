@@ -306,9 +306,6 @@ private:
 	template <typename T> const T* _ptr() const;
 	template <typename T> T* _ptr();
 
-	template <> const QString* _ptr() const;
-	template <> QString* _ptr();
-
 	//  Internal data members ----------------------------------------
 
 	union {
@@ -742,6 +739,9 @@ inline QString* FValueArray::_ptr()
 	F_ASSERT(is<QString>());
 	return (QString*)m_raw.ptr;
 }
+
+//template <> const QString* _ptr() const;
+//template <> QString* _ptr();
 
 // Related non-member functions ------------------------------------------------
 

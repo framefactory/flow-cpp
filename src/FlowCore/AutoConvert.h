@@ -184,7 +184,7 @@ struct FAutoConvert<quint64, QString>
 template <>
 struct FAutoConvert<FObject*, QString>
 {
-	static inline FObject* convert(const QString& str) {
+    static inline FObject* convert(const QString& /* str */) {
 		return NULL;
 	}
 };
@@ -204,7 +204,7 @@ struct FAutoConvert<QString, QString>
 template <typename SOURCE>
 struct FAutoConvert<FObject*, SOURCE>
 {
-	static inline FObject* convert(const SOURCE& val) {
+    static inline FObject* convert(const SOURCE& /* val */) {
 		return NULL;
 	}
 };
@@ -214,7 +214,7 @@ struct FAutoConvert<FObject*, SOURCE>
 template <typename TARGET>
 struct FAutoConvert<TARGET, FObject*>
 {
-	static inline TARGET convert(const FObject* pObj) {
+    static inline TARGET convert(const FObject* /* pObj */) {
 		return TARGET(0);
 	}
 };
@@ -222,7 +222,7 @@ struct FAutoConvert<TARGET, FObject*>
 template <>
 struct FAutoConvert<bool, FObject*>
 {
-	static inline bool convert(const FObject* pObj) {
+    static inline bool convert(const FObject* /* pObj */) {
 		return false;
 	}
 };

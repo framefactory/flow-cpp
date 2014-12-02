@@ -64,7 +64,7 @@ public:
 	//  Public queries -----------------------------------------------
 
 	/// Returns a list with all log entries of the given type.
-	std::vector<const FLogMessage> getMessages(FLogType type = FLogType::All) const;
+    std::vector<FLogMessage> getMessages(FLogType type = FLogType::All) const;
 
 	/// Returns the name of the log file.
 	const QString& logFileName() const { return m_logFileName; }
@@ -86,7 +86,7 @@ private:
 	QString m_logFileName;
 	bool m_logFileEnabled;
 
-	typedef std::vector<const FLogMessage> messageVec_t;
+    typedef std::vector<FLogMessage> messageVec_t;
 	messageVec_t m_messages;
 
 	typedef QList<FLogListener*> listenerList_t;

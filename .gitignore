@@ -9,7 +9,11 @@
 *.so
 *.o
 *.cache
+
+moc_*.*
+
 log.txt
+Makefile
 
 backup/
 bin/

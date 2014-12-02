@@ -15,11 +15,15 @@
 
 // Constructors and destructor -------------------------------------------------
 
+FLogMessage::FLogMessage()
+{
+}
+
 FLogMessage::FLogMessage(FLogType type,
                          const QString& module,
 						 const QString& text)
-: m_dateTime(QDateTime::currentDateTime()),
-  m_type(type),
+: m_type(type),
+  m_dateTime(QDateTime::currentDateTime()),
   m_module(module),
   m_text(text)
 {
@@ -29,8 +33,8 @@ FLogMessage::FLogMessage(const QDateTime& dateTime,
                          FLogType type,
 						 const QString& module,
 						 const QString& text)
-: m_dateTime(dateTime),
-  m_type(type),
+: m_type(type),
+  m_dateTime(dateTime),
   m_module(module),
   m_text(text)
 {

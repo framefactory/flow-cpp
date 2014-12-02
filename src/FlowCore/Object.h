@@ -40,7 +40,7 @@ protected:
 	FObject() { }
 	/// Protected copy constructor. Use clone() to create a deep copy
 	/// of an object derived from FObject.
-	FObject(const FObject& other) { }
+    FObject(const FObject& /* other */) { }
 private:
 	/// Private assignment operator. Use clone() to create a deep copy
 	/// of an object derived from FObject.

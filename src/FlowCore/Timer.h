@@ -28,7 +28,7 @@ class FLOWCORE_EXPORT FTimer
 
 public:
 	/// Default Constructor.
-	FTimer() : m_isElapsed(false), m_targetTime(0.0) { }
+    FTimer() : m_targetTime(0.0), m_isElapsed(false) { }
 	/// Creates a timer counting from the given time.
 	FTimer(FTime time);
 

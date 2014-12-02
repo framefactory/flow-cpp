@@ -34,7 +34,7 @@ size_t FValueType::byteCount() const
 	case Object: return 0;
 
 	default:
-		return NULL;
+        return 0;
 	}
 }
 

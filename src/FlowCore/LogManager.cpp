@@ -56,7 +56,7 @@ void FLogManager::addMessage(const FLogMessage& message)
 
 	m_messages.push_back(message);
 	
-	for (size_t i = 0; i < m_listeners.size(); ++i)
+    for (int i = 0; i < m_listeners.size(); ++i)
 		m_listeners[i]->logMessage(message);
 }
 
@@ -84,12 +84,12 @@ void FLogManager::setLogFileName(const QString& fileName)
 
 // Public queries --------------------------------------------------------------
 
-std::vector<const FLogMessage> FLogManager::getMessages(FLogType type) const
+std::vector<FLogMessage> FLogManager::getMessages(FLogType type) const
 {
 	FSectionLock lock(&m_objectLock);
-	std::vector<const FLogMessage> messages;
+    std::vector<FLogMessage> messages;
 
-	for (messageVec_t::const_iterator it = m_messages.begin(); it != m_messages.end(); ++it) {
+    for (messageVec_t::const_iterator it = m_messages.begin(); it != m_messages.end(); ++it) {
 		if (type == FLogType::All || type == it->type()) {
 			messages.push_back(*it);
 		}

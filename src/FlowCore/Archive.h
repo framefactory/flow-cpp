@@ -378,7 +378,7 @@ FArchive& FArchive::operator<<(const std::vector<T*>& objects)
 template <typename T>
 FArchive& FArchive::operator>>(std::vector<T*>& objects)
 {
-	std::vector<T*>::size_type size;
+    typename std::vector<T*>::size_type size;
 	operator>>(size);
 	objects.resize(size);
 	for (size_t i = 0, n = objects.size(); i < n; ++i) {
@@ -402,7 +402,7 @@ FArchive& FArchive::operator<<(const std::vector<T>& values)
 template <typename T>
 FArchive& FArchive::operator>>(std::vector<T>& values)
 {
-	std::vector<T>::size_type size;
+    typename std::vector<T>::size_type size;
 	operator>>(size);
 	values.resize(size);
 	for (size_t i = 0, n = values.size(); i < n; ++i) {

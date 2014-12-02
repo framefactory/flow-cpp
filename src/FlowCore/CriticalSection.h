@@ -43,6 +43,8 @@ private:
 #else
 
 public:
+    FCriticalSection() { }
+
 	void lock() { m_mutex.lock(); }
 	bool tryLock() { return m_mutex.tryLock(); }
 	void unlock() { m_mutex.unlock(); }

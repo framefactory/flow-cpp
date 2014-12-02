@@ -56,23 +56,89 @@ struct FLOWCORE_EXPORT FValueType
 		return Invalid;
 	}
 
-	template <> static FValueType fromType<float>()        { return Float; }
-	template <> static FValueType fromType<double>()       { return Double; }
-	template <> static FValueType fromType<bool>()         { return Bool; }
-	template <> static FValueType fromType<qint8>()       { return Int8; }
-	template <> static FValueType fromType<quint8>()      { return UInt8; }
-	template <> static FValueType fromType<int16_t>()      { return Int16; }
-	template <> static FValueType fromType<uint16_t>()     { return UInt16; }
-	template <> static FValueType fromType<qint32>()      { return Int32; }
-	template <> static FValueType fromType<quint32>()     { return UInt32; }
-	template <> static FValueType fromType<qint64>()      { return Int64; }
-	template <> static FValueType fromType<quint64>()     { return UInt64; }
-	template <> static FValueType fromType<QString>()      { return String; }
-	template <> static FValueType fromType<FObject*>()     { return Object; }
-
 	F_DECLARE_ENUM(FLOWCORE_EXPORT, FValueType, Invalid);
 };
-	
+
+// Template members ------------------------------------------------------------
+
+template <>
+FValueType FValueType::fromType<float>()
+{
+    return FValueType::Float;
+}
+
+template <>
+FValueType FValueType::fromType<double>()
+{
+    return FValueType::Double;
+}
+
+template <>
+FValueType FValueType::fromType<bool>()
+{
+    return FValueType::Bool;
+}
+
+template <>
+FValueType FValueType::fromType<qint8>()
+{
+    return FValueType::Int8;
+}
+
+template <>
+FValueType FValueType::fromType<quint8>()
+{
+    return FValueType::UInt8;
+}
+
+template <>
+FValueType FValueType::fromType<int16_t>()
+{
+    return FValueType::Int16;
+}
+
+template <>
+FValueType FValueType::fromType<uint16_t>()
+{
+    return FValueType::UInt16;
+}
+
+template <>
+FValueType FValueType::fromType<qint32>()
+{
+    return Int32;
+}
+
+template <>
+FValueType FValueType::fromType<quint32>()
+{
+    return FValueType::UInt32;
+}
+
+template <>
+FValueType FValueType::fromType<qint64>()
+{
+    return FValueType::Int64;
+}
+
+template <>
+FValueType FValueType::fromType<quint64>()
+{
+    return FValueType::UInt64;
+}
+
+template <>
+FValueType FValueType::fromType<QString>()
+{
+    return FValueType::String;
+}
+
+template <>
+FValueType FValueType::fromType<FObject*>()
+{
+    return FValueType::Object;
+}
+
 // -----------------------------------------------------------------------------
 
 #endif // FLOWCORE_VALUETYPE_H

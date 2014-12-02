@@ -25,7 +25,7 @@ const FTypeInfo* FObject::staticType() {
 
 // Public commands -------------------------------------------------------------
 
-void FObject::serialize(FArchive& ar)
+void FObject::serialize(FArchive&)
 {
 	// do nothing
 }

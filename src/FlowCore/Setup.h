@@ -11,6 +11,7 @@
 #define FLOWCORE_SETUP_H
 
 #include <stdint.h>
+#include <stddef.h>
 
 // -----------------------------------------------------------------------------
 //  Platform 

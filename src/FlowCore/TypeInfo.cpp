@@ -18,15 +18,15 @@
 // Constructors and destructor -------------------------------------------------
 
 FTypeInfo::FTypeInfo(const char* typeName,
-	size_t objectSize,
-	size_t version,
+    std::size_t objectSize,
+    std::size_t version,
 	FObject*(*pfnCreateObject)(),
 	const FTypeInfo* pBaseType)
-	: m_typeName(typeName),
-	m_objectSize(objectSize),
-	m_version(version),
-	m_pfnCreateObject(pfnCreateObject),
-	m_pBaseType(pBaseType)
+: m_typeName(typeName),
+  m_objectSize(objectSize),
+  m_version(version),
+  m_pfnCreateObject(pfnCreateObject),
+  m_pBaseType(pBaseType)
 {
 	m_typeId = FTypeRegistry::instance()->registerType(this);
 }

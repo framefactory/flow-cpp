@@ -70,7 +70,7 @@ void FValueArray::setChannelCapacity(size_type newChannelCapacity,
 	case FValueType::valueType: { rawType* const pData = _ptr<rawType>(); \
 	for (size_type i = 0; i < size; ++i) ar << pData[i]; } break;
 
-void FValueArray::serialize(FArchive& ar, bool serializeRawData /* = true */)
+void FValueArray::serialize(FArchive& ar, bool /* serializeRawData = true */)
 {
 	if (ar.isReading())
 	{
