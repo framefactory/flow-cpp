@@ -12,17 +12,17 @@
 
 // Static members --------------------------------------------------------------
 
-typedef std::unordered_map<std::string, uint32_t> nameIndexMap_t;
+typedef std::unordered_map<std::string, quint32> nameIndexMap_t;
 static nameIndexMap_t s_nameIndexMap;
 
 struct blockEntry_t
 {
-	uint32_t begin;
-	uint32_t end;
+	quint32 begin;
+	quint32 end;
 	const char* name;
 };
 
-static const uint32_t s_blockCount = 220;
+static const quint32 s_blockCount = 220;
 
 static const blockEntry_t s_blockTable[] =
 {
@@ -257,7 +257,7 @@ static const blockEntry_t s_blockTable[] =
 FUnicodeTraits::range_type FUnicodeTraits::codeBlockRange(const char* blockName)
 {
 	if (s_nameIndexMap.empty())	{
-		for (uint32_t i = 0; i < s_blockCount; ++i) {
+		for (quint32 i = 0; i < s_blockCount; ++i) {
 			s_nameIndexMap.insert(
 				nameIndexMap_t::value_type(s_blockTable[i].name, i));
 		}
@@ -268,25 +268,25 @@ FUnicodeTraits::range_type FUnicodeTraits::codeBlockRange(const char* blockName)
 	if (it == s_nameIndexMap.end())
 		return range_type(0, 0);
 
-	uint32_t blockIndex = it->second;
+	quint32 blockIndex = it->second;
 	return range_type(
 		s_blockTable[blockIndex].begin, s_blockTable[blockIndex].end);
 }
 
-FUnicodeTraits::range_type FUnicodeTraits::codeBlockRange(uint32_t blockIndex)
+FUnicodeTraits::range_type FUnicodeTraits::codeBlockRange(quint32 blockIndex)
 {
 	F_ASSERT(blockIndex < s_blockCount);
 	return range_type(
 		s_blockTable[blockIndex].begin, s_blockTable[blockIndex].end);
 }
 
-const char* FUnicodeTraits::codeBlockName(uint32_t blockIndex)
+const char* FUnicodeTraits::codeBlockName(quint32 blockIndex)
 {
 	F_ASSERT(blockIndex < s_blockCount);
 	return s_blockTable[blockIndex].name;
 }
 
-uint32_t FUnicodeTraits::codeBlockCount()
+quint32 FUnicodeTraits::codeBlockCount()
 {
 	return s_blockCount;
 }

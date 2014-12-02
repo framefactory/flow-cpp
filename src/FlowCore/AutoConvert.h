@@ -118,18 +118,18 @@ struct FAutoConvert<bool, QString>
 };
 
 template <>
-struct FAutoConvert<int8_t, QString>
+struct FAutoConvert<qint8, QString>
 {
-	static inline int8_t convert(const QString& str) {
-		return (int8_t)str.toShort();
+	static inline qint8 convert(const QString& str) {
+		return (qint8)str.toShort();
 	}
 };
 
 template <>
-struct FAutoConvert<uint8_t, QString>
+struct FAutoConvert<quint8, QString>
 {
-	static inline uint8_t convert(const QString& str) {
-		return (uint8_t)str.toUShort();
+	static inline quint8 convert(const QString& str) {
+		return (quint8)str.toUShort();
 	}
 };
 
@@ -150,34 +150,34 @@ struct FAutoConvert<uint16_t, QString>
 };
 
 template <>
-struct FAutoConvert<int32_t, QString>
+struct FAutoConvert<qint32, QString>
 {
-	static inline int32_t convert(const QString& str) {
+	static inline qint32 convert(const QString& str) {
 		return str.toInt();
 	}
 };
 
 template <>
-struct FAutoConvert<uint32_t, QString>
+struct FAutoConvert<quint32, QString>
 {
-	static inline uint32_t convert(const QString& str) {
+	static inline quint32 convert(const QString& str) {
 		return str.toUInt();
 	}
 };
 
 template <>
-struct FAutoConvert<int64_t, QString>
+struct FAutoConvert<qint64, QString>
 {
-	static inline int64_t convert(const QString& str) {
-		return (int64_t)str.toLongLong();
+	static inline qint64 convert(const QString& str) {
+		return (qint64)str.toLongLong();
 	}
 };
 
 template <>
-struct FAutoConvert<uint64_t, QString>
+struct FAutoConvert<quint64, QString>
 {
-	static inline uint64_t convert(const QString& str) {
-		return (uint64_t)str.toULongLong();
+	static inline quint64 convert(const QString& str) {
+		return (quint64)str.toULongLong();
 	}
 };
 

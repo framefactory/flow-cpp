@@ -63,15 +63,6 @@
     <ClCompile Include="..\..\..\..\obj\FlowCoreTest\x64_Release\moc\moc_VectorTest.cpp">
       <Filter>Generated Files\Release_x64</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\test\src\FlowCoreTest\UniqueIdTest.cpp">
-      <Filter>Source Files\Tests</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\obj\FlowCoreTest\x64_Debug\moc\moc_UniqueIdTest.cpp">
-      <Filter>Generated Files\Debug_x64</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\obj\FlowCoreTest\x64_Release\moc\moc_UniqueIdTest.cpp">
-      <Filter>Generated Files\Release_x64</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\..\test\src\FlowCoreTest\ValueArrayTest.cpp">
       <Filter>Source Files\Tests</Filter>
     </ClCompile>
@@ -90,9 +81,6 @@
       <Filter>Source Files\Tests</Filter>
     </CustomBuild>
     <CustomBuild Include="..\..\..\..\test\src\FlowCoreTest\VectorTest.h">
-      <Filter>Source Files\Tests</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\..\..\..\test\src\FlowCoreTest\UniqueIdTest.h">
       <Filter>Source Files\Tests</Filter>
     </CustomBuild>
     <CustomBuild Include="..\..\..\..\test\src\FlowCoreTest\ValueArrayTest.h">

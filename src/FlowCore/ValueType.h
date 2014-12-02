@@ -22,7 +22,7 @@ class FArchive;
 
 struct FLOWCORE_EXPORT FValueType
 {
-	typedef uint8_t value_type;
+	typedef quint8 value_type;
 
 	enum enum_type : value_type
 	{
@@ -59,14 +59,14 @@ struct FLOWCORE_EXPORT FValueType
 	template <> static FValueType fromType<float>()        { return Float; }
 	template <> static FValueType fromType<double>()       { return Double; }
 	template <> static FValueType fromType<bool>()         { return Bool; }
-	template <> static FValueType fromType<int8_t>()       { return Int8; }
-	template <> static FValueType fromType<uint8_t>()      { return UInt8; }
+	template <> static FValueType fromType<qint8>()       { return Int8; }
+	template <> static FValueType fromType<quint8>()      { return UInt8; }
 	template <> static FValueType fromType<int16_t>()      { return Int16; }
 	template <> static FValueType fromType<uint16_t>()     { return UInt16; }
-	template <> static FValueType fromType<int32_t>()      { return Int32; }
-	template <> static FValueType fromType<uint32_t>()     { return UInt32; }
-	template <> static FValueType fromType<int64_t>()      { return Int64; }
-	template <> static FValueType fromType<uint64_t>()     { return UInt64; }
+	template <> static FValueType fromType<qint32>()      { return Int32; }
+	template <> static FValueType fromType<quint32>()     { return UInt32; }
+	template <> static FValueType fromType<qint64>()      { return Int64; }
+	template <> static FValueType fromType<quint64>()     { return UInt64; }
 	template <> static FValueType fromType<QString>()      { return String; }
 	template <> static FValueType fromType<FObject*>()     { return Object; }
 

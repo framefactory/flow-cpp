@@ -10,6 +10,7 @@
 #ifndef FLOWCORE_PRECOMPILEDHEADER_H
 #define FLOWCORE_PRECOMPILEDHEADER_H
 
+/*
 #include <string>
 #include <sstream>
 #include <iostream>
@@ -37,6 +38,7 @@
 #  pragma warning(enable: 4996)
 #  include <Windows.h>
 #endif
+*/
 
 #include "FlowCore/Library.h"
 

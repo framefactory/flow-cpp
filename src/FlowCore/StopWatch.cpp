@@ -23,9 +23,9 @@
 
 
 /// Returns the performance counter frequency (the number of ticks per second).
-__inline uint64_t fPerformanceFrequency()
+__inline quint64 fPerformanceFrequency()
 {
-	uint64_t freq;
+	quint64 freq;
 	QueryPerformanceFrequency((LARGE_INTEGER*)&freq);
 	return freq;
 }
@@ -37,10 +37,10 @@ __inline uint64_t fPerformanceFrequency()
 __inline double fElapsedSeconds()
 {
 	static double freq = (double)fPerformanceFrequency();
-	static uint64_t lastTicks = 0;
+	static quint64 lastTicks = 0;
 	static double cumulatedSeconds = 0.0;
 
-	uint64_t ticks;
+	quint64 ticks;
 	QueryPerformanceCounter((LARGE_INTEGER*)&ticks);
 
 	return (double)ticks / freq;

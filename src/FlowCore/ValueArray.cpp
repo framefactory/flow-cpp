@@ -77,7 +77,7 @@ void FValueArray::serialize(FArchive& ar, bool serializeRawData /* = true */)
 		F_ASSERT(m_type == FValueType::Invalid);
 		_delete();
 
-		uint8_t type, isReference;
+		quint8 type, isReference;
 		size_type dimensions, channels;
 		ar >> type;
 		ar >> isReference;
@@ -95,14 +95,14 @@ void FValueArray::serialize(FArchive& ar, bool serializeRawData /* = true */)
 			_F_VA_READ_DATA(Float,   float    );
 			_F_VA_READ_DATA(Double,  double   );
 			_F_VA_READ_DATA(Bool,    bool     );
-			_F_VA_READ_DATA(Int8,    int8_t   );
-			_F_VA_READ_DATA(UInt8,   uint8_t  );
+			_F_VA_READ_DATA(Int8,    qint8   );
+			_F_VA_READ_DATA(UInt8,   quint8  );
 			_F_VA_READ_DATA(Int16,   int16_t  );
 			_F_VA_READ_DATA(UInt16,  uint16_t );
-			_F_VA_READ_DATA(Int32,   int32_t  );
-			_F_VA_READ_DATA(UInt32,  uint32_t );
-			_F_VA_READ_DATA(Int64,   int64_t  );
-			_F_VA_READ_DATA(UInt64,  uint64_t );
+			_F_VA_READ_DATA(Int32,   qint32  );
+			_F_VA_READ_DATA(UInt32,  quint32 );
+			_F_VA_READ_DATA(Int64,   qint64  );
+			_F_VA_READ_DATA(UInt64,  quint64 );
 			_F_VA_READ_DATA(String,  QString  );
 
 		case FValueType::Object:
@@ -119,8 +119,8 @@ void FValueArray::serialize(FArchive& ar, bool serializeRawData /* = true */)
 	}
 	else // isWriting
 	{
-		ar << (uint8_t)m_type;
-		ar << (uint8_t)m_isReference;
+		ar << (quint8)m_type;
+		ar << (quint8)m_isReference;
 		ar << m_dimensionCount;
 		ar << m_channelCount;
 
@@ -134,14 +134,14 @@ void FValueArray::serialize(FArchive& ar, bool serializeRawData /* = true */)
 			_F_VA_WRITE_DATA(Float,   float    );
 			_F_VA_WRITE_DATA(Double,  double   );
 			_F_VA_WRITE_DATA(Bool,    bool     );
-			_F_VA_WRITE_DATA(Int8,    int8_t   );
-			_F_VA_WRITE_DATA(UInt8,   uint8_t  );
+			_F_VA_WRITE_DATA(Int8,    qint8   );
+			_F_VA_WRITE_DATA(UInt8,   quint8  );
 			_F_VA_WRITE_DATA(Int16,   int16_t  );
 			_F_VA_WRITE_DATA(UInt16,  uint16_t );
-			_F_VA_WRITE_DATA(Int32,   int32_t  );
-			_F_VA_WRITE_DATA(UInt32,  uint32_t );
-			_F_VA_WRITE_DATA(Int64,   int64_t  );
-			_F_VA_WRITE_DATA(UInt64,  uint64_t );
+			_F_VA_WRITE_DATA(Int32,   qint32  );
+			_F_VA_WRITE_DATA(UInt32,  quint32 );
+			_F_VA_WRITE_DATA(Int64,   qint64  );
+			_F_VA_WRITE_DATA(UInt64,  quint64 );
 			_F_VA_WRITE_DATA(String,  QString  );
 
 		default:
@@ -267,14 +267,14 @@ void FValueArray::_allocate()
 			case FValueType::Float:   m_raw.ptr = new float[cap];    break;
 			case FValueType::Double:  m_raw.ptr = new double[cap];   break;
 			case FValueType::Bool:    m_raw.ptr = new bool[cap];     break;
-			case FValueType::Int8:    m_raw.ptr = new int8_t[cap];   break;
-			case FValueType::UInt8:   m_raw.ptr = new uint8_t[cap];  break;
+			case FValueType::Int8:    m_raw.ptr = new qint8[cap];   break;
+			case FValueType::UInt8:   m_raw.ptr = new quint8[cap];  break;
 			case FValueType::Int16:   m_raw.ptr = new int16_t[cap];  break;
 			case FValueType::UInt16:  m_raw.ptr = new uint16_t[cap]; break;
-			case FValueType::Int32:   m_raw.ptr = new int32_t[cap];  break;
-			case FValueType::UInt32:  m_raw.ptr = new uint32_t[cap]; break;
-			case FValueType::Int64:   m_raw.ptr = new int64_t[cap];  break;
-			case FValueType::UInt64:  m_raw.ptr = new uint64_t[cap]; break;
+			case FValueType::Int32:   m_raw.ptr = new qint32[cap];  break;
+			case FValueType::UInt32:  m_raw.ptr = new quint32[cap]; break;
+			case FValueType::Int64:   m_raw.ptr = new qint64[cap];  break;
+			case FValueType::UInt64:  m_raw.ptr = new quint64[cap]; break;
 			case FValueType::String:  m_raw.ptr = new QString[cap];  break;
 			case FValueType::Object:  m_raw.ptr = new FObject*[cap]; break;
 			default: F_ASSERT(false); break;
@@ -327,14 +327,14 @@ void FValueArray::_reallocate(size_type newChannelCapacity,
 			_F_VA_REALLOCATE_COPY(Float,   float    );
 			_F_VA_REALLOCATE_COPY(Double,  double   );
 			_F_VA_REALLOCATE_COPY(Bool,    bool     );
-			_F_VA_REALLOCATE_COPY(Int8,    int8_t   );
-			_F_VA_REALLOCATE_COPY(UInt8,   uint8_t  );
+			_F_VA_REALLOCATE_COPY(Int8,    qint8   );
+			_F_VA_REALLOCATE_COPY(UInt8,   quint8  );
 			_F_VA_REALLOCATE_COPY(Int16,   int16_t  );
 			_F_VA_REALLOCATE_COPY(UInt16,  uint16_t );
-			_F_VA_REALLOCATE_COPY(Int32,   int32_t  );
-			_F_VA_REALLOCATE_COPY(UInt32,  uint32_t );
-			_F_VA_REALLOCATE_COPY(Int64,   int64_t  );
-			_F_VA_REALLOCATE_COPY(UInt64,  uint64_t );
+			_F_VA_REALLOCATE_COPY(Int32,   qint32  );
+			_F_VA_REALLOCATE_COPY(UInt32,  quint32 );
+			_F_VA_REALLOCATE_COPY(Int64,   qint64  );
+			_F_VA_REALLOCATE_COPY(UInt64,  quint64 );
 			_F_VA_REALLOCATE_COPY(String,  QString  );
 			_F_VA_REALLOCATE_COPY(Object,  FObject* );
 
@@ -367,14 +367,14 @@ void FValueArray::_resize(size_type newChannelCount)
 		_F_VA_RESIZE_COPY(Float,   float    );
 		_F_VA_RESIZE_COPY(Double,  double   );
 		_F_VA_RESIZE_COPY(Bool,    bool     );
-		_F_VA_RESIZE_COPY(Int8,    int8_t   );
-		_F_VA_RESIZE_COPY(UInt8,   uint8_t  );
+		_F_VA_RESIZE_COPY(Int8,    qint8   );
+		_F_VA_RESIZE_COPY(UInt8,   quint8  );
 		_F_VA_RESIZE_COPY(Int16,   int16_t  );
 		_F_VA_RESIZE_COPY(UInt16,  uint16_t );
-		_F_VA_RESIZE_COPY(Int32,   int32_t  );
-		_F_VA_RESIZE_COPY(UInt32,  uint32_t );
-		_F_VA_RESIZE_COPY(Int64,   int64_t  );
-		_F_VA_RESIZE_COPY(UInt64,  uint64_t );
+		_F_VA_RESIZE_COPY(Int32,   qint32  );
+		_F_VA_RESIZE_COPY(UInt32,  quint32 );
+		_F_VA_RESIZE_COPY(Int64,   qint64  );
+		_F_VA_RESIZE_COPY(UInt64,  quint64 );
 		_F_VA_RESIZE_COPY(String,  QString  );
 		_F_VA_RESIZE_COPY(Object,  FObject* );
 
@@ -397,14 +397,14 @@ void FValueArray::_delete()
 			case FValueType::Float:	  delete[] static_cast<float*    >(m_raw.ptr); break;
 			case FValueType::Double:  delete[] static_cast<double*   >(m_raw.ptr); break;
 			case FValueType::Bool:    delete[] static_cast<bool*     >(m_raw.ptr); break;
-			case FValueType::Int8:    delete[] static_cast<int8_t*   >(m_raw.ptr); break;
-			case FValueType::UInt8:   delete[] static_cast<uint8_t*  >(m_raw.ptr); break;
+			case FValueType::Int8:    delete[] static_cast<qint8*   >(m_raw.ptr); break;
+			case FValueType::UInt8:   delete[] static_cast<quint8*  >(m_raw.ptr); break;
 			case FValueType::Int16:   delete[] static_cast<int16_t*  >(m_raw.ptr); break;
 			case FValueType::UInt16:  delete[] static_cast<uint16_t* >(m_raw.ptr); break;
-			case FValueType::Int32:   delete[] static_cast<int32_t*  >(m_raw.ptr); break;
-			case FValueType::UInt32:  delete[] static_cast<uint32_t* >(m_raw.ptr); break;
-			case FValueType::Int64:   delete[] static_cast<int64_t*  >(m_raw.ptr); break;
-			case FValueType::UInt64:  delete[] static_cast<uint64_t* >(m_raw.ptr); break;
+			case FValueType::Int32:   delete[] static_cast<qint32*  >(m_raw.ptr); break;
+			case FValueType::UInt32:  delete[] static_cast<quint32* >(m_raw.ptr); break;
+			case FValueType::Int64:   delete[] static_cast<qint64*  >(m_raw.ptr); break;
+			case FValueType::UInt64:  delete[] static_cast<quint64* >(m_raw.ptr); break;
 			case FValueType::String:  delete[] static_cast<QString*  >(m_raw.ptr); break;
 			case FValueType::Object:  delete[] static_cast<FObject** >(m_raw.ptr); break;
 			default: F_ASSERT(false); break;
@@ -432,14 +432,14 @@ void FValueArray::_delete()
 	_F_VA_CONVERT_FROM(Float,   float,     dstVT, dstRT) \
 	_F_VA_CONVERT_FROM(Double,  double,    dstVT, dstRT) \
 	_F_VA_CONVERT_FROM(Bool,    bool,      dstVT, dstRT) \
-	_F_VA_CONVERT_FROM(Int8,    int8_t,    dstVT, dstRT) \
-	_F_VA_CONVERT_FROM(UInt8,   uint8_t,   dstVT, dstRT) \
+	_F_VA_CONVERT_FROM(Int8,    qint8,    dstVT, dstRT) \
+	_F_VA_CONVERT_FROM(UInt8,   quint8,   dstVT, dstRT) \
 	_F_VA_CONVERT_FROM(Int16,   int16_t,   dstVT, dstRT) \
 	_F_VA_CONVERT_FROM(UInt16,  uint16_t,  dstVT, dstRT) \
-	_F_VA_CONVERT_FROM(Int32,   int32_t,   dstVT, dstRT) \
-	_F_VA_CONVERT_FROM(UInt32,  uint32_t,  dstVT, dstRT) \
-	_F_VA_CONVERT_FROM(Int64,   int64_t,   dstVT, dstRT) \
-	_F_VA_CONVERT_FROM(UInt64,  uint64_t,  dstVT, dstRT) \
+	_F_VA_CONVERT_FROM(Int32,   qint32,   dstVT, dstRT) \
+	_F_VA_CONVERT_FROM(UInt32,  quint32,  dstVT, dstRT) \
+	_F_VA_CONVERT_FROM(Int64,   qint64,   dstVT, dstRT) \
+	_F_VA_CONVERT_FROM(UInt64,  quint64,  dstVT, dstRT) \
 	_F_VA_CONVERT_FROM(String,  QString,   dstVT, dstRT) \
 	_F_VA_CONVERT_FROM(Object,  FObject*,  dstVT, dstRT) \
 	default: F_ASSERT(false); } } break;
@@ -479,14 +479,14 @@ void FValueArray::_convert(
 		_F_VA_CONVERT_TO(Float,   float);
 		_F_VA_CONVERT_TO(Double,  double);
 		_F_VA_CONVERT_TO(Bool,    bool);
-		_F_VA_CONVERT_TO(Int8,    int8_t);
-		_F_VA_CONVERT_TO(UInt8,   uint8_t);
+		_F_VA_CONVERT_TO(Int8,    qint8);
+		_F_VA_CONVERT_TO(UInt8,   quint8);
 		_F_VA_CONVERT_TO(Int16,   int16_t);
 		_F_VA_CONVERT_TO(UInt16,  uint16_t);
-		_F_VA_CONVERT_TO(Int32,   int32_t);
-		_F_VA_CONVERT_TO(UInt32,  uint32_t);
-		_F_VA_CONVERT_TO(Int64,   int64_t);
-		_F_VA_CONVERT_TO(UInt64,  uint64_t);
+		_F_VA_CONVERT_TO(Int32,   qint32);
+		_F_VA_CONVERT_TO(UInt32,  quint32);
+		_F_VA_CONVERT_TO(Int64,   qint64);
+		_F_VA_CONVERT_TO(UInt64,  quint64);
 		_F_VA_CONVERT_TO(String,  QString);
 		_F_VA_CONVERT_TO(Object,  FObject*);
 

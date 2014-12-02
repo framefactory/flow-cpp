@@ -89,7 +89,7 @@ bool FTestManager::_runUnitTest(FTestManager::unitTest_t* pUnitTest)
 	F_TRACE << "\nRUNNING TESTS FOR " << pUnitTest->className << " (" << pUnitTest->title << ")";
 	pUnitTest->pTest->setup();
 
-	uint32_t failedOffset = m_failed;
+	quint32 failedOffset = m_failed;
 
 	for (int i = pMeta->methodOffset(); i < pMeta->methodCount(); ++i) {
 		QMetaMethod method = pMeta->method(i);

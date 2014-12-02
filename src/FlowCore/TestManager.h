@@ -79,8 +79,8 @@ private:
 	typedef std::vector<result_t*> resultVec_t;
 	resultVec_t m_results;
 
-	uint32_t m_passed;
-	uint32_t m_failed;
+	quint32 m_passed;
+	quint32 m_failed;
 
 	unitTest_t* m_pCurrentTest;
 };

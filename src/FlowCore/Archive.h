@@ -84,14 +84,14 @@ public:
 	//  Operators ----------------------------------------------------
 	
 	FArchive& operator<<(bool v);
-	FArchive& operator<<(int8_t v);
-	FArchive& operator<<(uint8_t v);
+	FArchive& operator<<(qint8 v);
+	FArchive& operator<<(quint8 v);
 	FArchive& operator<<(int16_t v);
 	FArchive& operator<<(uint16_t v);
-	FArchive& operator<<(int32_t v);
-	FArchive& operator<<(uint32_t v);
-	FArchive& operator<<(int64_t v);
-	FArchive& operator<<(uint64_t v);
+	FArchive& operator<<(qint32 v);
+	FArchive& operator<<(quint32 v);
+	FArchive& operator<<(qint64 v);
+	FArchive& operator<<(quint64 v);
 	FArchive& operator<<(float v);
 	FArchive& operator<<(double v);
 	FArchive& operator<<(const char* s);
@@ -105,14 +105,14 @@ public:
 	FArchive& operator<<(const std::vector<T>& values);
 
 	FArchive& operator>>(bool& v);
-	FArchive& operator>>(int8_t& v);
-	FArchive& operator>>(uint8_t& v);
+	FArchive& operator>>(qint8& v);
+	FArchive& operator>>(quint8& v);
 	FArchive& operator>>(int16_t& v);
 	FArchive& operator>>(uint16_t& v);
-	FArchive& operator>>(int32_t& v);
-	FArchive& operator>>(uint32_t& v);
-	FArchive& operator>>(int64_t& v);
-	FArchive& operator>>(uint64_t& v);
+	FArchive& operator>>(qint32& v);
+	FArchive& operator>>(quint32& v);
+	FArchive& operator>>(qint64& v);
+	FArchive& operator>>(quint64& v);
 	FArchive& operator>>(float& v);
 	FArchive& operator>>(double& v);
 	FArchive& operator>>(char*& s);
@@ -147,17 +147,17 @@ private:
 	classTagTable_t *m_pWriteClassTable;
 	uint16_t m_nextClassTag;
 
-	typedef std::unordered_map<const FObject*, uint32_t> objTagTable_t;
+	typedef std::unordered_map<const FObject*, quint32> objTagTable_t;
 	objTagTable_t *m_pWriteObjectTable;
-	uint32_t m_nextObjectTag;
+	quint32 m_nextObjectTag;
 
 	typedef std::unordered_map<uint16_t, classInfo_t> tagClassTable_t;
 	tagClassTable_t *m_pReadClassTable;
 
-	typedef std::unordered_map<uint32_t, FObject*> tagObjTable_t;
+	typedef std::unordered_map<quint32, FObject*> tagObjTable_t;
 	tagObjTable_t *m_pReadObjectTable;
 
-	uint32_t m_currentVersion;
+	quint32 m_currentVersion;
 	mode_t m_archiveMode;
 	bool m_checkRefs;
 
@@ -173,14 +173,14 @@ inline FArchive& FArchive::operator<<(bool v)
 	return *this;
 }
 
-inline FArchive& FArchive::operator<<(int8_t v)
+inline FArchive& FArchive::operator<<(qint8 v)
 {
 	F_ASSERT(isWriting());
 	m_stream << v;
 	return *this;
 }
 
-inline FArchive& FArchive::operator<<(uint8_t v)
+inline FArchive& FArchive::operator<<(quint8 v)
 {
 	F_ASSERT(isWriting());
 	m_stream << v;
@@ -201,28 +201,28 @@ inline FArchive& FArchive::operator<<(uint16_t v)
 	return *this;
 }
 
-inline FArchive& FArchive::operator<<(int32_t v)
+inline FArchive& FArchive::operator<<(qint32 v)
 {
 	F_ASSERT(isWriting());
 	m_stream << v;
 	return *this;
 }
 
-inline FArchive& FArchive::operator<<(uint32_t v)
+inline FArchive& FArchive::operator<<(quint32 v)
 {
 	F_ASSERT(isWriting());
 	m_stream << v;
 	return *this;
 }
 
-inline FArchive& FArchive::operator<<(int64_t v)
+inline FArchive& FArchive::operator<<(qint64 v)
 {
 	F_ASSERT(isWriting());
 	m_stream << v;
 	return *this;
 }
 
-inline FArchive& FArchive::operator<<(uint64_t v)
+inline FArchive& FArchive::operator<<(quint64 v)
 {
 	F_ASSERT(isWriting());
 	m_stream << v;
@@ -271,14 +271,14 @@ inline FArchive& FArchive::operator>>(bool& v)
 	return *this;
 }
 
-inline FArchive& FArchive::operator>>(int8_t& v)
+inline FArchive& FArchive::operator>>(qint8& v)
 {
 	F_ASSERT(isReading());
 	m_stream >> v;
 	return *this;
 }
 
-inline FArchive& FArchive::operator>>(uint8_t& v)
+inline FArchive& FArchive::operator>>(quint8& v)
 {
 	F_ASSERT(isReading());
 	m_stream >> v;
@@ -299,28 +299,28 @@ inline FArchive& FArchive::operator>>(uint16_t& v)
 	return *this;
 }
 
-inline FArchive& FArchive::operator>>(int32_t& v)
+inline FArchive& FArchive::operator>>(qint32& v)
 {
 	F_ASSERT(isReading());
 	m_stream >> v;
 	return *this;
 }
 
-inline FArchive& FArchive::operator>>(uint32_t& v)
+inline FArchive& FArchive::operator>>(quint32& v)
 {
 	F_ASSERT(isReading());
 	m_stream >> v;
 	return *this;
 }
 
-inline FArchive& FArchive::operator>>(int64_t& v)
+inline FArchive& FArchive::operator>>(qint64& v)
 {
 	F_ASSERT(isReading());
 	m_stream >> v;
 	return *this;
 }
 
-inline FArchive& FArchive::operator>>(uint64_t& v)
+inline FArchive& FArchive::operator>>(quint64& v)
 {
 	F_ASSERT(isReading());
 	m_stream >> v;

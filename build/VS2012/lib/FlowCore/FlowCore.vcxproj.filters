@@ -60,9 +60,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\..\src\FlowCore\PrecompiledHeader.cpp">
-      <Filter>Source Files\Library</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\..\src\FlowCore\Setup.cpp">
       <Filter>Source Files\Library</Filter>
     </ClCompile>
@@ -108,9 +105,6 @@
     <ClCompile Include="..\..\..\..\obj\FlowCore\x64_Release\moc\moc_UnitTest.cpp">
       <Filter>Generated Files\Release_x64</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\src\FlowCore\UniqueId.cpp">
-      <Filter>Source Files\Types</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\..\src\FlowCore\ValueArray.cpp">
       <Filter>Source Files\Types</Filter>
     </ClCompile>
@@ -135,9 +129,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\src\FlowCore\Library.h">
-      <Filter>Source Files\Library</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\src\FlowCore\PrecompiledHeader.h">
       <Filter>Source Files\Library</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\src\FlowCore\Setup.h">
@@ -214,9 +205,6 @@
     </ClInclude>
     <ClInclude Include="..\..\..\..\src\FlowCore\TestManager.h">
       <Filter>Source Files\Test</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\src\FlowCore\UniqueId.h">
-      <Filter>Source Files\Types</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\src\FlowCore\ValueArray.h">
       <Filter>Source Files\Types</Filter>

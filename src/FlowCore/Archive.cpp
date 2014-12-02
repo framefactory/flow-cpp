@@ -102,7 +102,7 @@ FObject* FArchive::readObject(const FTypeInfo* pBaseClass /* = NULL */)
 	F_ASSERT(m_pReadObjectTable);
 
 	// read the object tag
-	uint32_t objTag;
+	quint32 objTag;
 	m_stream >> objTag;
 
 	// if it's the zero tag, we simply return a null pointer
@@ -166,14 +166,14 @@ void FArchive::writeObject(const FObject* pObject)
 
 		// If we have a null pointer, we write a zero version number and return
 		if (pObject == NULL) {
-			m_stream << uint32_t(0);
+			m_stream << quint32(0);
 			return;
 		}
 
 		// write class and object information.
 		const FTypeInfo* pClass = pObject->dynamicType();
 		F_ASSERT(pClass->version() > 0); // 0 is reserved for the null pointer.
-		m_stream << (uint32_t)pClass->version();
+		m_stream << (quint32)pClass->version();
 		m_stream << pClass->typeName();
 
 		// need to cast away the const because serialize is for reading and writing
@@ -187,7 +187,7 @@ void FArchive::writeObject(const FObject* pObject)
 
 	// If we have a null pointer, we write a zero tag and return
 	if (pObject == NULL) {
-		m_stream << uint32_t(0);
+		m_stream << quint32(0);
 		return;
 	}
 
@@ -211,7 +211,7 @@ void FArchive::writeObject(const FObject* pObject)
 			m_pWriteClassTable->insert(classTagTable_t::value_type(pClass, m_nextClassTag));
 			m_stream << m_nextClassTag;
 			m_nextClassTag++;
-			m_stream << (uint32_t)pClass->version();
+			m_stream << (quint32)pClass->version();
 			m_stream << pClass->typeName();
 		}
 		else

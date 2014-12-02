@@ -33,7 +33,7 @@ class FLOWCORE_EXPORT FValueArray
 	//  Public types -------------------------------------------------
   
 public:
-	typedef int32_t size_type;
+	typedef qint32 size_type;
 
 	//  Constructors and destructor ----------------------------------
 
@@ -225,7 +225,7 @@ public:
 	void setChannelCapacity(size_type channelCapacity, bool preserveData = false);
 
 	/// Sets the changed flag on the data.
-	void setChanged(uint32_t state = 1) { m_hasChanged = state; }
+	void setChanged(quint32 state = 1) { m_hasChanged = state; }
 	/// Clears the changed flag on the data.
 	void clearChanged() { m_hasChanged = 0; }
 
@@ -313,7 +313,7 @@ private:
 
 	union {
 		void* ptr;
-		int64_t val;
+		qint64 val;
 	} m_raw;
 
 	size_type m_dimensionCount;
@@ -323,9 +323,9 @@ private:
 
 	FValueType m_type;
 
-	uint8_t   m_isArray			:  1;
-	uint8_t   m_isReference		:  1;
-	uint8_t   m_hasChanged      :  1;
+	quint8   m_isArray			:  1;
+	quint8   m_isReference		:  1;
+	quint8   m_hasChanged      :  1;
 };
 
 // Constructors ----------------------------------------------------------------
@@ -477,14 +477,14 @@ T FValueArray::to() const
 	case FValueType::Float:   return auto_convert<T, float    >(as<float    >());
 	case FValueType::Double:  return auto_convert<T, double   >(as<double   >());
 	case FValueType::Bool:    return auto_convert<T, bool     >(as<bool     >());
-	case FValueType::Int8:    return auto_convert<T, int8_t   >(as<int8_t   >());
-	case FValueType::UInt8:   return auto_convert<T, uint8_t  >(as<uint8_t  >());
+	case FValueType::Int8:    return auto_convert<T, qint8   >(as<qint8   >());
+	case FValueType::UInt8:   return auto_convert<T, quint8  >(as<quint8  >());
 	case FValueType::Int16:   return auto_convert<T, int16_t  >(as<int16_t  >());
 	case FValueType::UInt16:  return auto_convert<T, uint16_t >(as<uint16_t >());
-	case FValueType::Int32:   return auto_convert<T, int32_t  >(as<int32_t  >());
-	case FValueType::UInt32:  return auto_convert<T, uint32_t >(as<uint32_t >());
-	case FValueType::Int64:   return auto_convert<T, int64_t  >(as<int64_t  >());
-	case FValueType::UInt64:  return auto_convert<T, uint64_t >(as<uint64_t >());
+	case FValueType::Int32:   return auto_convert<T, qint32  >(as<qint32  >());
+	case FValueType::UInt32:  return auto_convert<T, quint32 >(as<quint32 >());
+	case FValueType::Int64:   return auto_convert<T, qint64  >(as<qint64  >());
+	case FValueType::UInt64:  return auto_convert<T, quint64 >(as<quint64 >());
 	case FValueType::String:  return auto_convert<T, QString  >(as<QString  >());
 	case FValueType::Object:  return auto_convert<T, FObject* >(as<FObject* >());
 	case FValueType::Invalid:
@@ -503,14 +503,14 @@ T FValueArray::to(size_type channel, size_type dimension) const
 	case FValueType::Float:   return auto_convert<T, float    >(as<float    >(channel, dimension));
 	case FValueType::Double:  return auto_convert<T, double   >(as<double   >(channel, dimension));
 	case FValueType::Bool:    return auto_convert<T, bool     >(as<bool     >(channel, dimension));
-	case FValueType::Int8:    return auto_convert<T, int8_t   >(as<int8_t   >(channel, dimension));
-	case FValueType::UInt8:   return auto_convert<T, uint8_t  >(as<uint8_t  >(channel, dimension));
+	case FValueType::Int8:    return auto_convert<T, qint8   >(as<qint8   >(channel, dimension));
+	case FValueType::UInt8:   return auto_convert<T, quint8  >(as<quint8  >(channel, dimension));
 	case FValueType::Int16:   return auto_convert<T, int16_t  >(as<int16_t  >(channel, dimension));
 	case FValueType::UInt16:  return auto_convert<T, uint16_t >(as<uint16_t >(channel, dimension));
-	case FValueType::Int32:   return auto_convert<T, int32_t  >(as<int32_t  >(channel, dimension));
-	case FValueType::UInt32:  return auto_convert<T, uint32_t >(as<uint32_t >(channel, dimension));
-	case FValueType::Int64:   return auto_convert<T, int64_t  >(as<int64_t  >(channel, dimension));
-	case FValueType::UInt64:  return auto_convert<T, uint64_t >(as<uint64_t >(channel, dimension));
+	case FValueType::Int32:   return auto_convert<T, qint32  >(as<qint32  >(channel, dimension));
+	case FValueType::UInt32:  return auto_convert<T, quint32 >(as<quint32 >(channel, dimension));
+	case FValueType::Int64:   return auto_convert<T, qint64  >(as<qint64  >(channel, dimension));
+	case FValueType::UInt64:  return auto_convert<T, quint64 >(as<quint64 >(channel, dimension));
 	case FValueType::String:  return auto_convert<T, QString  >(as<QString  >(channel, dimension));
 	case FValueType::Object:  return auto_convert<T, FObject* >(as<FObject* >(channel, dimension));
 	case FValueType::Invalid:
@@ -532,14 +532,14 @@ void FValueArray::set(const T& val)
 	case FValueType::Float:   as<float    >() = auto_convert<float    , T>(val); return;
 	case FValueType::Double:  as<double   >() = auto_convert<double   , T>(val); return;
 	case FValueType::Bool:    as<bool     >() = auto_convert<bool     , T>(val); return;
-	case FValueType::Int8:    as<int8_t   >() = auto_convert<int8_t   , T>(val); return;
-	case FValueType::UInt8:   as<uint8_t  >() = auto_convert<uint8_t  , T>(val); return;
+	case FValueType::Int8:    as<qint8   >() = auto_convert<qint8   , T>(val); return;
+	case FValueType::UInt8:   as<quint8  >() = auto_convert<quint8  , T>(val); return;
 	case FValueType::Int16:   as<int16_t  >() = auto_convert<int16_t  , T>(val); return;
 	case FValueType::UInt16:  as<uint16_t >() = auto_convert<uint16_t , T>(val); return;
-	case FValueType::Int32:   as<int32_t  >() = auto_convert<int32_t  , T>(val); return;
-	case FValueType::UInt32:  as<uint32_t >() = auto_convert<uint32_t , T>(val); return;
-	case FValueType::Int64:   as<int64_t  >() = auto_convert<int64_t  , T>(val); return;
-	case FValueType::UInt64:  as<uint64_t >() = auto_convert<uint64_t , T>(val); return;
+	case FValueType::Int32:   as<qint32  >() = auto_convert<qint32  , T>(val); return;
+	case FValueType::UInt32:  as<quint32 >() = auto_convert<quint32 , T>(val); return;
+	case FValueType::Int64:   as<qint64  >() = auto_convert<qint64  , T>(val); return;
+	case FValueType::UInt64:  as<quint64 >() = auto_convert<quint64 , T>(val); return;
 	case FValueType::String:  as<QString  >() = auto_convert<QString  , T>(val); return;
 	case FValueType::Object:  as<FObject* >() = auto_convert<FObject* , T>(val); return;
 	case FValueType::Invalid:
@@ -561,14 +561,14 @@ void FValueArray::set(size_type channel, size_type dimension, const T& val)
 	case FValueType::Float:   as<float    >(channel, dimension) = auto_convert<float    , T>(val); return;
 	case FValueType::Double:  as<double   >(channel, dimension) = auto_convert<double   , T>(val); return;
 	case FValueType::Bool:    as<bool     >(channel, dimension) = auto_convert<bool     , T>(val); return;
-	case FValueType::Int8:    as<int8_t   >(channel, dimension) = auto_convert<int8_t   , T>(val); return;
-	case FValueType::UInt8:   as<uint8_t  >(channel, dimension) = auto_convert<uint8_t  , T>(val); return;
+	case FValueType::Int8:    as<qint8   >(channel, dimension) = auto_convert<qint8   , T>(val); return;
+	case FValueType::UInt8:   as<quint8  >(channel, dimension) = auto_convert<quint8  , T>(val); return;
 	case FValueType::Int16:   as<int16_t  >(channel, dimension) = auto_convert<int16_t  , T>(val); return;
 	case FValueType::UInt16:  as<uint16_t >(channel, dimension) = auto_convert<uint16_t , T>(val); return;
-	case FValueType::Int32:   as<int32_t  >(channel, dimension) = auto_convert<int32_t  , T>(val); return;
-	case FValueType::UInt32:  as<uint32_t >(channel, dimension) = auto_convert<uint32_t , T>(val); return;
-	case FValueType::Int64:   as<int64_t  >(channel, dimension) = auto_convert<int64_t  , T>(val); return;
-	case FValueType::UInt64:  as<uint64_t >(channel, dimension) = auto_convert<uint64_t , T>(val); return;
+	case FValueType::Int32:   as<qint32  >(channel, dimension) = auto_convert<qint32  , T>(val); return;
+	case FValueType::UInt32:  as<quint32 >(channel, dimension) = auto_convert<quint32 , T>(val); return;
+	case FValueType::Int64:   as<qint64  >(channel, dimension) = auto_convert<qint64  , T>(val); return;
+	case FValueType::UInt64:  as<quint64 >(channel, dimension) = auto_convert<quint64 , T>(val); return;
 	case FValueType::String:  as<QString  >(channel, dimension) = auto_convert<QString  , T>(val); return;
 	case FValueType::Object:  as<FObject* >(channel, dimension) = auto_convert<FObject* , T>(val); return;
 	case FValueType::Invalid:

@@ -13,6 +13,8 @@
 #include "FlowCore/Library.h"
 #include "FlowCore/RangeT.h"
 
+#include <QtGlobal>
+
 #include <map>
 #include <unordered_map>
 #include <string>
@@ -24,12 +26,12 @@
 class FLOWCORE_EXPORT FUnicodeTraits
 {
 public:
-	typedef FRangeT<uint32_t> range_type;
+	typedef FRangeT<quint32> range_type;
 
 	static range_type codeBlockRange(const char* blockName);
-	static range_type codeBlockRange(uint32_t blockIndex);
-	static const char* codeBlockName(uint32_t blockIndex);
-	static uint32_t codeBlockCount();
+	static range_type codeBlockRange(quint32 blockIndex);
+	static const char* codeBlockName(quint32 blockIndex);
+	static quint32 codeBlockCount();
 
 private:
 	FUnicodeTraits() { }

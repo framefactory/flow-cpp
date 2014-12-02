@@ -497,10 +497,10 @@ typedef FVector2T<float> FVector2f;
 typedef FVector2T<double> FVector2d;
 
 /// 2-component vector of type integer
-typedef FVector2T<int32_t> FVector2i;
+typedef FVector2T<qint32> FVector2i;
 
 /// 2-component vector of type unsigned integer
-typedef FVector2T<uint32_t> FVector2ui;
+typedef FVector2T<quint32> FVector2ui;
 
 // -----------------------------------------------------------------------------
 

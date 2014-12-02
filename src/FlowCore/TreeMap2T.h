@@ -257,8 +257,8 @@ void FTreeMap2T<T>::node_t::clear()
 
 typedef FTreeMap2T<float> FTreeMap2f;
 typedef FTreeMap2T<double> FTreeMap2d;
-typedef FTreeMap2T<int32_t> FTreeMap2i;
-typedef FTreeMap2T<uint32_t> FTreeMap2ui;
+typedef FTreeMap2T<qint32> FTreeMap2i;
+typedef FTreeMap2T<quint32> FTreeMap2ui;
 
 // -----------------------------------------------------------------------------
 

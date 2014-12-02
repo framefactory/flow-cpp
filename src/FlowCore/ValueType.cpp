@@ -22,14 +22,14 @@ size_t FValueType::byteCount() const
 	case Float: return sizeof(float);
 	case Double: return sizeof(double);
 	case Bool: return sizeof(bool);
-	case Int8: return sizeof(int8_t);
-	case UInt8: return sizeof(uint8_t);
+	case Int8: return sizeof(qint8);
+	case UInt8: return sizeof(quint8);
 	case Int16: return sizeof(int16_t);
 	case UInt16: return sizeof(uint16_t);
-	case Int32: return sizeof(int32_t);
-	case UInt32: return sizeof(uint32_t);
-	case Int64: return sizeof(int64_t);
-	case UInt64: return sizeof(uint64_t);
+	case Int32: return sizeof(qint32);
+	case UInt32: return sizeof(quint32);
+	case Int64: return sizeof(qint64);
+	case UInt64: return sizeof(quint64);
 	case String: return 0;
 	case Object: return 0;
 

@@ -17,9 +17,6 @@
     <ClCompile Include="..\..\..\..\obj\FlowCoreTest\x64_Debug\moc\moc_ObjectTest.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\obj\FlowCoreTest\x64_Debug\moc\moc_UniqueIdTest.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
-    </ClCompile>
     <ClCompile Include="..\..\..\..\obj\FlowCoreTest\x64_Debug\moc\moc_ValueArrayTest.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClCompile>
@@ -32,9 +29,6 @@
     <ClCompile Include="..\..\..\..\obj\FlowCoreTest\x64_Release\moc\moc_ObjectTest.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\obj\FlowCoreTest\x64_Release\moc\moc_UniqueIdTest.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
-    </ClCompile>
     <ClCompile Include="..\..\..\..\obj\FlowCoreTest\x64_Release\moc\moc_ValueArrayTest.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
@@ -44,7 +38,6 @@
     <ClCompile Include="..\..\..\..\test\src\FlowCoreTest\ArchiveTest.cpp" />
     <ClCompile Include="..\..\..\..\test\src\FlowCoreTest\main.cpp" />
     <ClCompile Include="..\..\..\..\test\src\FlowCoreTest\ObjectTest.cpp" />
-    <ClCompile Include="..\..\..\..\test\src\FlowCoreTest\UniqueIdTest.cpp" />
     <ClCompile Include="..\..\..\..\test\src\FlowCoreTest\ValueArrayTest.cpp" />
     <ClCompile Include="..\..\..\..\test\src\FlowCoreTest\VectorTest.cpp" />
   </ItemGroup>
@@ -83,18 +76,6 @@
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\..\..\..\..\obj\FlowCoreTest\$(PlatformName)_$(ConfigurationName)\moc\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DWIN64 -DQT_DLL -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB -D_UNICODE "-I$(QTDIR)\include" "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtWidgets" "-I.\..\..\..\..\obj\FlowCoreTest\$(PlatformName)_$(ConfigurationName)\moc" "-I$(APP_DIR)\src" "-I$(FLOW_DIR)\src" "-I$(FLOW_DIR)\app\src" "-I$(FLOW_DIR)\test\src"</Command>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Moc%27ing VectorTest.h...</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\..\..\..\..\obj\FlowCoreTest\$(PlatformName)_$(ConfigurationName)\moc\moc_%(Filename).cpp</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\..\..\..\..\obj\FlowCoreTest\$(PlatformName)_$(ConfigurationName)\moc\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DWIN64 -DQT_DLL -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB -D_UNICODE "-I$(QTDIR)\include" "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtWidgets" "-I.\..\..\..\..\obj\FlowCoreTest\$(PlatformName)_$(ConfigurationName)\moc" "-I$(APP_DIR)\src" "-I$(FLOW_DIR)\src" "-I$(FLOW_DIR)\app\src" "-I$(FLOW_DIR)\test\src"</Command>
-    </CustomBuild>
-  </ItemGroup>
-  <ItemGroup>
-    <CustomBuild Include="..\..\..\..\test\src\FlowCoreTest\UniqueIdTest.h">
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Moc%27ing UniqueIdTest.h...</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\..\..\..\..\obj\FlowCoreTest\$(PlatformName)_$(ConfigurationName)\moc\moc_%(Filename).cpp</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\..\..\..\..\obj\FlowCoreTest\$(PlatformName)_$(ConfigurationName)\moc\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DWIN64 -DQT_DLL -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB -D_UNICODE "-I$(QTDIR)\include" "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtWidgets" "-I.\..\..\..\..\obj\FlowCoreTest\$(PlatformName)_$(ConfigurationName)\moc" "-I$(APP_DIR)\src" "-I$(FLOW_DIR)\src" "-I$(FLOW_DIR)\app\src" "-I$(FLOW_DIR)\test\src"</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Moc%27ing UniqueIdTest.h...</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\..\..\..\..\obj\FlowCoreTest\$(PlatformName)_$(ConfigurationName)\moc\moc_%(Filename).cpp</Outputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\..\..\..\..\obj\FlowCoreTest\$(PlatformName)_$(ConfigurationName)\moc\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DWIN64 -DQT_DLL -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB -D_UNICODE "-I$(QTDIR)\include" "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtWidgets" "-I.\..\..\..\..\obj\FlowCoreTest\$(PlatformName)_$(ConfigurationName)\moc" "-I$(APP_DIR)\src" "-I$(FLOW_DIR)\src" "-I$(FLOW_DIR)\app\src" "-I$(FLOW_DIR)\test\src"</Command>
     </CustomBuild>
