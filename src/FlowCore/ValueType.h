@@ -62,79 +62,79 @@ struct FLOWCORE_EXPORT FValueType
 // Template members ------------------------------------------------------------
 
 template <>
-FValueType FValueType::fromType<float>()
+inline FValueType FValueType::fromType<float>()
 {
     return FValueType::Float;
 }
 
 template <>
-FValueType FValueType::fromType<double>()
+inline FValueType FValueType::fromType<double>()
 {
     return FValueType::Double;
 }
 
 template <>
-FValueType FValueType::fromType<bool>()
+inline FValueType FValueType::fromType<bool>()
 {
     return FValueType::Bool;
 }
 
 template <>
-FValueType FValueType::fromType<qint8>()
+inline FValueType FValueType::fromType<qint8>()
 {
     return FValueType::Int8;
 }
 
 template <>
-FValueType FValueType::fromType<quint8>()
+inline FValueType FValueType::fromType<quint8>()
 {
     return FValueType::UInt8;
 }
 
 template <>
-FValueType FValueType::fromType<int16_t>()
+inline FValueType FValueType::fromType<int16_t>()
 {
     return FValueType::Int16;
 }
 
 template <>
-FValueType FValueType::fromType<uint16_t>()
+inline FValueType FValueType::fromType<uint16_t>()
 {
     return FValueType::UInt16;
 }
 
 template <>
-FValueType FValueType::fromType<qint32>()
+inline FValueType FValueType::fromType<qint32>()
 {
     return Int32;
 }
 
 template <>
-FValueType FValueType::fromType<quint32>()
+inline FValueType FValueType::fromType<quint32>()
 {
     return FValueType::UInt32;
 }
 
 template <>
-FValueType FValueType::fromType<qint64>()
+inline FValueType FValueType::fromType<qint64>()
 {
     return FValueType::Int64;
 }
 
 template <>
-FValueType FValueType::fromType<quint64>()
+inline FValueType FValueType::fromType<quint64>()
 {
     return FValueType::UInt64;
 }
 
 template <>
-FValueType FValueType::fromType<QString>()
+inline FValueType FValueType::fromType<QString>()
 {
     return FValueType::String;
 }
 
 template <>
-FValueType FValueType::fromType<FObject*>()
+inline FValueType FValueType::fromType<FObject*>()
 {
     return FValueType::Object;
 }

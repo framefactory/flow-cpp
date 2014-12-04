@@ -42,7 +42,7 @@ FLogWidget::FLogWidget(QWidget* pParent, Qt::WindowFlags flags /* = 0 */)
 	FLogManager* pLogManager = FLogManager::instance();
 	pLogManager->addListener(this);
 
-	std::vector<const FLogMessage> messages = pLogManager->getMessages();
+	std::vector<FLogMessage> messages = pLogManager->getMessages();
 	for (size_t i = 0; i < messages.size(); ++i) {
 		_addEntry(messages[i]);
 	}

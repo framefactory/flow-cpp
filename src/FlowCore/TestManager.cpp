@@ -87,6 +87,7 @@ bool FTestManager::_runUnitTest(FTestManager::unitTest_t* pUnitTest)
 	const QMetaObject* pMeta = pUnitTest->pTest->metaObject();
 
 	F_TRACE << "\nRUNNING TESTS FOR " << pUnitTest->className << " (" << pUnitTest->title << ")";
+	F_TRACE;
 	pUnitTest->pTest->setup();
 
 	quint32 failedOffset = m_failed;
